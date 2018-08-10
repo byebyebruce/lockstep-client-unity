@@ -20,8 +20,17 @@ public class Network : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+	    if (0 == Time.frameCount % 100)
+	    {
+	        if (null != client && client.IsRunning())
+	        {
+                client.Send(new ByteBuf(1));
+	        }
+        }
+	    
+	    
+
+    }
 
     void OnGUI()
     {
