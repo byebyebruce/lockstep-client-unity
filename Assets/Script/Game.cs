@@ -21,7 +21,10 @@ public class Game : MonoBehaviour
 
     private LockStepFrame Frame = new LockStepFrame();
     private GameLogic Logic = new GameLogic();
-    
+
+    public float TickTime = 0.03333333f;
+    public float NextTime;
+
     void Awake()
     {
         Instance = this;
@@ -61,6 +64,7 @@ public class Game : MonoBehaviour
     {
         State = GameState.Start;
         Frame.Start();
+        NextTime = Time.unscaledTime+ TickTime;
 
         //StartTime = Time.unscaledTime;
         //NextTime = StartTime + (FrameCount+1) * TickTime;
@@ -73,25 +77,6 @@ public class Game : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < 10 ; i++)
-        {
-            var data = Frame.TickFrame();
-            if (null==data)
-            {
-                break;
-            }
-            if (i > 2)
-            {
-                Debug.LogFormat("FrameCount={0} Remain{1}", Frame.FrameCount,Frame.FrameList.Count());
-            }
-            
-            Logic.ProcessCmd(data.CommandMsg.ToList());
-            if (Frame.FrameList.Count <= 6)
-            {
-                break;
-            }
-        }
-
         var d = Logic.Data;
         foreach (var playerData in d.Players)
         {
@@ -101,8 +86,42 @@ public class Game : MonoBehaviour
                 o.transform.localPosition = Vector3.Lerp(o.transform.localPosition, playerData.Value.Pos,
                     Time.deltaTime * 10);
             }
-            
+
         }
+
+        if (NextTime > Time.unscaledTime)
+        {
+            return;
+        }
+
+        NextTime += TickTime;
+
+        var n = Frame.FrameList.Count;
+        if (Frame.FrameList.Count >=5)
+        {
+            n = (int)((Frame.FrameList.Count + 15.0f) / 10.0f);
+        }
+        else
+        {
+            n = 1;
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            var data = Frame.TickFrame();
+            if (null==data)
+            {
+                break;
+            }
+            if (i >= 2)
+            {
+                Debug.LogFormat("FrameCount={0} Remain{1}", Frame.FrameCount,Frame.FrameList.Count());
+            }
+            
+            Logic.ProcessCmd(data.CommandMsg.ToList());
+        }
+
+
         
     }
 
