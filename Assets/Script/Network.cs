@@ -85,6 +85,28 @@ public class Network : MonoBehaviour
 
             client.Send(bb);
         }
+        else if (GUI.Button(new Rect(200, 100, 100, 100), "Left"))
+        {
+            CommandMsg msg = new CommandMsg();
+            msg.Cmd = MsgType.CmdInput;
+            msg.InputMsg = new InputMsg();
+            msg.InputMsg.Dir = 3;
+
+            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
+
+            client.Send(bb);
+        }
+        else if (GUI.Button(new Rect(300, 100, 100, 100), "Right"))
+        {
+            CommandMsg msg = new CommandMsg();
+            msg.Cmd = MsgType.CmdInput;
+            msg.InputMsg = new InputMsg();
+            msg.InputMsg.Dir = 4;
+
+            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
+
+            client.Send(bb);
+        }
 
     }
 
