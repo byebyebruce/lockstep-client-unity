@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using cocosocket4unity;
 using UnityEngine;
 
-public class Main : MonoBehaviour
+public class TestNetwork : MonoBehaviour
 {
-    private KcpClient client;
+    private MyKcp client;
     // Use this for initialization
     void Start () {
-	    client = new TestKcp();
+	    client = new MyKcp();
 	    client.NoDelay(1, 10, 2, 1);//fast
 	    client.WndSize(64, 64);
 	    client.Timeout(10 * 1000);
@@ -48,5 +48,11 @@ public class Main : MonoBehaviour
             i++;
         }
         
+    }
+
+    void OnDestroy()
+    {
+        if (null != client)
+            client.Stop();
     }
 }
