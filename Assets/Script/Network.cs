@@ -24,8 +24,13 @@ public class Network : MonoBehaviour
 	    {
 	        if (null != client && client.IsRunning())
 	        {
-                client.Send(new ByteBuf(1));
-	        }
+	            CommandMsg msg = new CommandMsg();
+	            msg.Cmd = MsgType.CmdHearbeat;
+
+	            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
+
+	            client.Send(bb);
+            }
         }
 	    
 	    

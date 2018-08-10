@@ -12,6 +12,7 @@ public static class MsgType
     public const int CmdInput = 30;
     public const int CmdLeave = 40;
     public const int CmdGameOver = 50;
+    public const int CmdHearbeat = 1000;
 }
 
 [System.Serializable]
