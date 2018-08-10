@@ -6,13 +6,19 @@ using UnityEngine;
 
 public class Network : MonoBehaviour
 {
+    public static Network Instance;
     private MyKcp client;
+
+    void Awake()
+    {
+        Instance = this;
+    }
     // Use this for initialization
     void Start () {
         client = new MyKcp();
         client.NoDelay(1, 10, 2, 1);//fast
         client.WndSize(64, 64);
-        client.Timeout(10 * 1000);
+        client.Timeout(100 * 1000);
         client.SetMtu(512);
         client.SetMinRto(10);
         client.SetConv(121106);
@@ -68,6 +74,14 @@ public class Network : MonoBehaviour
 
             client.Send(bb);
         }
+        else if (GUI.Button(new Rect(400, 0, 100, 100), "Leave"))
+        {
+            CommandMsg msg = new CommandMsg();
+            msg.Cmd = MsgType.CmdLeave;
+            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
+
+            client.Send(bb);
+        }
         else if (GUI.Button(new Rect(0, 100, 100, 100), "Foward"))
         {
             CommandMsg msg = new CommandMsg();
@@ -113,6 +127,23 @@ public class Network : MonoBehaviour
             client.Send(bb);
         }
 
+    }
+
+    public void HandleReceive(ByteBuf bb)
+    {
+        MsgProcessor.ProcessMsg(bb);
+    }
+
+    public void HandleException(Exception ex)
+    {
+        UnityEngine.Debug.LogWarning("MyKcp HandleException");
+        Application.Quit();
+    }
+
+    public void HandleTimeout()
+    {
+        UnityEngine.Debug.LogWarning("MyKcp HandleTimeout");
+        Application.Quit();
     }
 
     void OnDestroy()

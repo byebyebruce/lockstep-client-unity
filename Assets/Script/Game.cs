@@ -73,15 +73,23 @@ public class Game : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10 ; i++)
         {
             var data = Frame.TickFrame();
             if (null==data)
             {
                 break;
             }
-
+            if (i > 2)
+            {
+                Debug.LogFormat("FrameCount={0} Remain{1}", Frame.FrameCount,Frame.FrameList.Count());
+            }
+            
             Logic.ProcessCmd(data.CommandMsg.ToList());
+            if (Frame.FrameList.Count <= 6)
+            {
+                break;
+            }
         }
 
         var d = Logic.Data;

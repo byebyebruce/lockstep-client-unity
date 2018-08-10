@@ -52,6 +52,7 @@ public static class MsgProcessor
                     break;
                 }
             }
+            //UnityEngine.Debug.LogFormat("FrameSeqMsg:{0}", msg.FrameSeqMsg.Frames.Count);
         }
         else if (MsgType.CmdLeave == msg.Cmd)
         {

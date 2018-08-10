@@ -10,7 +10,8 @@ public class MyKcp : KcpClient
     {
         Loom.QueueOnMainThread(() =>
         {
-            MsgProcessor.ProcessMsg(bb);
+            Network.Instance.HandleReceive(bb);
+
         });
 
     }
@@ -21,8 +22,14 @@ public class MyKcp : KcpClient
     /// <param name="ex"></param>
     protected override void HandleException(Exception ex)
     {
-        UnityEngine.Debug.LogWarning("MyKcp HandleException");
         base.HandleException(ex);
+
+        Loom.QueueOnMainThread(() =>
+        {
+            Network.Instance.HandleException(ex);
+        });
+
+        
     }
 
     /// <summary>
@@ -30,7 +37,13 @@ public class MyKcp : KcpClient
     /// </summary>
     protected override void HandleTimeout()
     {
-        UnityEngine.Debug.LogWarning("MyKcp HandleTimeout");
         base.HandleTimeout();
+
+        Loom.QueueOnMainThread(() =>
+        {
+            Network.Instance.HandleTimeout();
+        });
+
+        
     }
 }

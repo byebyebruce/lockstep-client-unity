@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LockStepFrame  {
-    Dictionary<int,FrameMsg> FrameList = new Dictionary<int,FrameMsg>();
+    public Dictionary<int,FrameMsg> FrameList = new Dictionary<int,FrameMsg>();
     public int FrameCount;
 
-    private float TickTime = 0.033333f;
+    public float TickTime = 0.03333333f;
     public float NextTime;
     public float StartTime;
 
@@ -26,9 +26,9 @@ public class LockStepFrame  {
 
     public FrameMsg TickFrame()
     {
-        if (Time.unscaledTime < StartTime + FrameCount * TickTime)
+        //if ((Time.unscaledTime- StartTime)/ TickTime < FrameCount )
         {
-            return null;
+        //    return null;
         }
         if (FrameList.Count == 0)
         {
