@@ -12,6 +12,7 @@ public class GamePlay : MonoBehaviour {
         foreach (var kv in d.Players)
         {
             Players[kv.Key] = GameObject.Instantiate(Prefab, Vector3.zero, Quaternion.identity);
+            Players[kv.Key].name = kv.Key.ToString();
         }
     }
 
