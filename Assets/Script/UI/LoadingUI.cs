@@ -48,7 +48,7 @@ public class LoadingUI : MonoBehaviour {
         Network.Instance.Send(message.C2S_Progress, msg);
 
         yield return new WaitForSeconds(0.5f);
-        msg.Pro = 1;
+        msg.Pro = 100;
         Network.Instance.Send(message.C2S_Progress, msg);
 
         yield return new WaitForSeconds(0.5f);
