@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MyKcp : KcpClient
 {
+   
+
     protected override void HandleReceive(ByteBuf bb)
     {
         Loom.QueueOnMainThread(() =>

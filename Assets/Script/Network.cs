@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using cocosocket4unity;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class Network : MonoBehaviour
     public static Network Instance;
     private MyKcp client;
 
+    public bool Connected = false;
+    public float Heartbeat = 10.0f;
+    public float Delta = 0;
     void Awake()
     {
         Instance = this;
@@ -26,21 +30,32 @@ public class Network : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    if (0 == Time.frameCount % 100)
+	    if (null != client && client.IsRunning() && Connected)
 	    {
-	        if (null != client && client.IsRunning())
+	        Delta += Time.unscaledDeltaTime;
+	        if (Delta > Heartbeat)
 	        {
-	            CommandMsg msg = new CommandMsg();
-	            msg.Cmd = MsgType.CmdHearbeat;
+	            client.Send(message.NewCSPacket(message.C2S_Heartbeat));
+	            Delta = 0;
+	        }
 
-	            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
-
-	            client.Send(bb);
-            }
+                
         }
 	    
 	    
 
+    }
+
+    public void Send(int id, object obj = null)
+    {
+        if (null != client && client.IsRunning() && Connected)
+        {
+            client.Send(message.NewCSPacket(id,obj));
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("client no connect");
+        }
     }
 
     void OnGUI()
@@ -52,6 +67,8 @@ public class Network : MonoBehaviour
             client.Connect("127.0.0.1", 10086);
             client.Start();
 
+            client.Send(message.NewCSPacket(message.C2S_Connect, null));
+
             //StartCoroutine(Co());
         } else if (GUI.Button(new Rect(100, 0, 100, 100), "Disconnect"))
         {
@@ -59,78 +76,19 @@ public class Network : MonoBehaviour
         }
         else if (GUI.Button(new Rect(200, 0, 100, 100), "Join"))
         {
-            CommandMsg msg = new CommandMsg();
-            msg.Cmd = MsgType.CmdJoin;
             
-            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
 
-            client.Send(bb);
         }
-        else if (GUI.Button(new Rect(300, 0, 100, 100), "Ready"))
+        else if (GUI.Button(new Rect(300, 0, 100, 100), "Leave"))
         {
-            CommandMsg msg = new CommandMsg();
-            msg.Cmd = MsgType.CmdReady;
-            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
-
-            client.Send(bb);
-        }
-        else if (GUI.Button(new Rect(400, 0, 100, 100), "Leave"))
-        {
-            CommandMsg msg = new CommandMsg();
-            msg.Cmd = MsgType.CmdLeave;
-            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
-
-            client.Send(bb);
-        }
-        else if (GUI.Button(new Rect(0, 100, 100, 100), "Foward"))
-        {
-            CommandMsg msg = new CommandMsg();
-            msg.Cmd = MsgType.CmdInput;
-            msg.InputMsg = new InputMsg();
-            msg.InputMsg.Dir = 1;
-
-            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
-
-            client.Send(bb);
-        }
-        else if (GUI.Button(new Rect(100, 100, 100, 100), "Back"))
-        {
-            CommandMsg msg = new CommandMsg();
-            msg.Cmd = MsgType.CmdInput;
-            msg.InputMsg = new InputMsg();
-            msg.InputMsg.Dir = 2;
-
-            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
-
-            client.Send(bb);
-        }
-        else if (GUI.Button(new Rect(200, 100, 100, 100), "Left"))
-        {
-            CommandMsg msg = new CommandMsg();
-            msg.Cmd = MsgType.CmdInput;
-            msg.InputMsg = new InputMsg();
-            msg.InputMsg.Dir = 3;
-
-            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
-
-            client.Send(bb);
-        }
-        else if (GUI.Button(new Rect(300, 100, 100, 100), "Right"))
-        {
-            CommandMsg msg = new CommandMsg();
-            msg.Cmd = MsgType.CmdInput;
-            msg.InputMsg = new InputMsg();
-            msg.InputMsg.Dir = 4;
-
-            ByteBuf bb = new ByteBuf(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(msg)));
-
-            client.Send(bb);
+           
         }
 
     }
 
     public void HandleReceive(ByteBuf bb)
     {
+        Connected = true;
         MsgProcessor.ProcessMsg(bb);
     }
 
@@ -142,6 +100,7 @@ public class Network : MonoBehaviour
 
     public void HandleTimeout()
     {
+        Connected = false;
         UnityEngine.Debug.LogWarning("MyKcp HandleTimeout");
         Application.Quit();
     }

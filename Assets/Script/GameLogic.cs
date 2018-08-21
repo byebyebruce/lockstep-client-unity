@@ -6,6 +6,7 @@ public class GameData
 {
     public class PlayerData
     {
+        public int Progress;
         public Vector3 Pos;
         public Quaternion Dir;
 
@@ -24,7 +25,14 @@ public class GameData
     }
 }
 
-public class GameLogic  {
+public class GameLogic
+{
+    static GameLogic()
+    {
+        Instance = new GameLogic();
+    }
+
+    public static GameLogic Instance;
 
     public GameData Data = new GameData();
 
@@ -33,43 +41,50 @@ public class GameLogic  {
         Data.Players[id] = new GameData.PlayerData();
     }
 
-    public void ProcessCmd(List<CommandMsg> msg)
+    public void SetProgress(int id,int progress)
+    {
+        Data.Players[id].Progress = progress;
+    }
+
+    public void ProcessCmd(List<int> msg)
     {
         if (null == msg)
         {
             return;
         }
-        foreach (var c in msg)
+        for (var i = 0; i < msg.Count; i++)
         {
-            PlayerCmd(c.ID,c.InputMsg);
+            var id = msg[i];
+            PlayerCmd(id, msg.GetRange(i+1 , 3));
+            i += 4;
         }
-        
     }
 
-    public void PlayerCmd(int id, InputMsg cmd)
+    public void PlayerCmd(int id, List<int> cmd)
     {
         GameData.PlayerData data = null;
         if (!Data.Players.TryGetValue(id, out data))
         {
             return;
         }
+        var dir = cmd[0];
 
-        if (1 == cmd.Dir)
+        if (1 == dir)
         {
             data.Pos = data.Pos + Vector3.forward;
-        } else if (2 == cmd.Dir)
+        } else if (2 == dir)
         {
             data.Pos = data.Pos + Vector3.back;
         }
-        else if (3 == cmd.Dir)
+        else if (3 == dir)
         {
             data.Pos = data.Pos + Vector3.left;
         }
-        else if (4 == cmd.Dir)
+        else if (4 == dir)
         {
             data.Pos = data.Pos + Vector3.right;
         }
-        else if (0 == cmd.Dir)
+        else if (0 == dir)
         {
             data.Pos = Vector3.zero;
         }

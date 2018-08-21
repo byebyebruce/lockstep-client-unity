@@ -7,6 +7,8 @@ using UnityEngine;
 public class TestNetwork : MonoBehaviour
 {
     private MyKcp client;
+
+    
     // Use this for initialization
     void Start () {
 	    client = new MyKcp();

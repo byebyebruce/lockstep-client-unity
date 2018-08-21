@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using UnityEngine;
+
+using MyType = System.Collections.Generic.List<int>;
 
 public class Game : MonoBehaviour
 {
@@ -13,14 +16,13 @@ public class Game : MonoBehaviour
         Start,
         GameOver,
     }
-    public GameObject Prefab;
+
     public static Game Instance;
     public int MyID = -1;
-    public Dictionary<int, GameObject> Players = new Dictionary<int,GameObject>();
+    
     public GameState State;
 
     private LockStepFrame Frame = new LockStepFrame();
-    private GameLogic Logic = new GameLogic();
 
     public float TickTime = 0.03333333f;
     public float NextTime;
@@ -28,28 +30,22 @@ public class Game : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void JoinRoom(int id)
     {
-        Players[id] = GameObject.Instantiate(Prefab, Vector3.zero, Quaternion.identity);
-        Logic.JoinRoom(id);
+        
+        GameLogic.Instance.JoinRoom(id);
         UnityEngine.Debug.LogFormat("[{0}], JoinRoom", id);
     }
 
     public void LeaveRoom(int id)
     {
-        GameObject o = null;
-        if (Players.TryGetValue(id,out o))
-        {
-            GameObject.Destroy(o);
-            Players.Remove(id);
-
-            UnityEngine.Debug.LogFormat("[{0}], LeaveRoom", id);
-        }
+      
     }
 
-    public void FrameData(FrameSeqMsg msg)
+    public void FrameData(List<List<int>> msg)
     {
         Frame.PushFrameData(msg);
         
@@ -77,17 +73,7 @@ public class Game : MonoBehaviour
             return;
         }
 
-        var d = Logic.Data;
-        foreach (var playerData in d.Players)
-        {
-            GameObject o = null;
-            if (Players.TryGetValue(playerData.Key, out o))
-            {
-                o.transform.localPosition = Vector3.Lerp(o.transform.localPosition, playerData.Value.Pos,
-                    Time.deltaTime * 10);
-            }
 
-        }
 
         if (NextTime > Time.unscaledTime)
         {
@@ -117,8 +103,8 @@ public class Game : MonoBehaviour
             {
                 Debug.LogFormat("FrameCount={0} Remain{1}", Frame.FrameCount,Frame.FrameList.Count());
             }
-            
-            Logic.ProcessCmd(data.CommandMsg.ToList());
+
+            GameLogic.Instance.ProcessCmd(data);
         }
 
 
@@ -126,12 +112,14 @@ public class Game : MonoBehaviour
     }
 
     public string test;
-
+    
     [ContextMenu("test")]
     public void Test()
     {
-        var a = JsonUtility.FromJson<ServerMsg>(test);
-        var temp = a.Cmd;
+        var b = JsonConvert.DeserializeObject<MyType>("[1,2]");
+
+        var a = JsonConvert.DeserializeObject<List<List<int>>>("[[1],[2],[3,4]]");
+        var temp = a.Count;
     }
 
         
