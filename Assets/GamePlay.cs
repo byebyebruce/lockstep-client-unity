@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GamePlay : MonoBehaviour {
     public GameObject Prefab;
-    public Dictionary<int, GameObject> Players = new Dictionary<int, GameObject>();
+    public Dictionary<ulong, GameObject> Players = new Dictionary<ulong, GameObject>();
 
     void Awake()
     {
@@ -41,27 +41,27 @@ public class GamePlay : MonoBehaviour {
         
         if (GUI.Button(new Rect(0, 100, 100, 100), "Foward"))
         {
-            var msg = new message.C2S_InputSkillMsg();
-            msg.Sid = 1;
-            Network.Instance.Send(message.C2S_InputSkill, msg);
+            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            msg.SetSid(1);
+            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
         }
         else if (GUI.Button(new Rect(100, 100, 100, 100), "Back"))
         {
-            var msg = new message.C2S_InputSkillMsg();
-            msg.Sid = 2;
-            Network.Instance.Send(message.C2S_InputSkill, msg);
+            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            msg.SetSid(2);
+            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
         }
         else if (GUI.Button(new Rect(200, 100, 100, 100), "Left"))
         {
-            var msg = new message.C2S_InputSkillMsg();
-            msg.Sid = 3;
-            Network.Instance.Send(message.C2S_InputSkill, msg);
+            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            msg.SetSid(3);
+            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
         }
         else if (GUI.Button(new Rect(300, 100, 100, 100), "Right"))
         {
-            var msg = new message.C2S_InputSkillMsg();
-            msg.Sid = 4;
-            Network.Instance.Send(message.C2S_InputSkill, msg);
+            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            msg.SetSid(4);
+            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
         }
 
     }

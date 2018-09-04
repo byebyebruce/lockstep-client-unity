@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using cocosocket4unity;
-using Newtonsoft;
-using Newtonsoft.Json;
 using UnityEngine.SceneManagement;
 
 public static class MsgProcessor
@@ -13,50 +11,50 @@ public static class MsgProcessor
 
     public static void ProcessMsg(ByteBuf bb)
     {
-        var p = message.ReadPacket(bb.GetRaw());
+        var p = PacketWraper.ReadPacket(bb.GetRaw());
         //UnityEngine.Debug.Log("msg:" + p.id);
-
-        switch (p.id)
+        var id = (message.ID)p.id;
+        switch (id)
         {
-            case message.S2C_Connect:
+            case message.ID.S2C_Connect:
                 {
                     string content = System.Text.Encoding.UTF8.GetString(p.data);
                     UnityEngine.Debug.Log("message.S2C_Connect");
 
-                    Network.Instance.Send(message.C2S_JoinRoom);
+                    Network.Instance.Send(message.ID.C2S_JoinRoom);
                 }
                 break;
-            case message.S2C_JoinRoom:
+            case message.ID.S2C_JoinRoom:
                 {
-                    string content = System.Text.Encoding.UTF8.GetString(p.data);
-                    var msg = JsonUtility.FromJson<message.S2C_JoinRoomMsg>(content);
+                    
+                    var msg = message.S2C_JoinRoomMsg.ParseFrom(p.data);
+                    GameLogic.Instance.JoinRoom(msg.Id);
 
-                    //GameLogic.Instance.JoinRoom(msg.MyID);
-
-                    foreach (var id in msg.ID)
+                    foreach (var pid in msg.OthersList)
                     {
-                        GameLogic.Instance.JoinRoom(id);
+                        GameLogic.Instance.JoinRoom(pid);
                     }
                     SceneManager.LoadScene(1);
 
                     UnityEngine.Debug.Log("msg:" + p.id);
                 }
                 break;
-            case message.S2C_Progress:
+            case message.ID.S2C_Progress:
                 {
-                    string content = System.Text.Encoding.UTF8.GetString(p.data);
-                    var msg = JsonUtility.FromJson<message.S2C_ProgressMsg>(content);
-                    GameLogic.Instance.SetProgress(msg.ID,msg.Pro);
+                    var msg = message.S2C_ProgressMsg.ParseFrom(p.data);
+                    GameLogic.Instance.JoinRoom(msg.Id);
+                    GameLogic.Instance.SetProgress(msg.Id,msg.Pro);
                 }
                 break;
-            case message.S2C_Ready:
+            case message.ID.S2C_Ready:
                 SceneManager.LoadScene(2);
                 Game.Instance.DoStart();
                 break;
-            case message.S2C_Frame:
+            case message.ID.S2C_Frame:
                 {
                     string content = System.Text.Encoding.UTF8.GetString(p.data);
-                    
+
+                    /*
                     var msg = JsonConvert.DeserializeObject<List<List<int>>>(content);
                     foreach (var VARIABLE in msg)
                     {
@@ -66,9 +64,10 @@ public static class MsgProcessor
                         }
                     }
                     Game.Instance.FrameData(msg);
-                    
+                    */
+
                 }
-    
+
                 break;
         }
         //string content = System.Text.Encoding.UTF8.GetString(bb.GetRaw());

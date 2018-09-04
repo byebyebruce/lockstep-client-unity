@@ -17,7 +17,7 @@ public class GameData
         }
     }
 
-    public Dictionary<int,PlayerData> Players = new Dictionary<int, PlayerData>();
+    public Dictionary<ulong, PlayerData> Players = new Dictionary<ulong, PlayerData>();
 
     public void Reset()
     {
@@ -36,17 +36,17 @@ public class GameLogic
 
     public GameData Data = new GameData();
 
-    public void JoinRoom(int id)
+    public void JoinRoom(ulong id)
     {
         Data.Players[id] = new GameData.PlayerData();
     }
 
-    public void SetProgress(int id,int progress)
+    public void SetProgress(ulong id,int progress)
     {
         Data.Players[id].Progress = progress;
     }
 
-    public void ProcessCmd(List<int> msg)
+    public void ProcessCmd(List<ulong> msg)
     {
         if (null == msg)
         {
@@ -55,12 +55,12 @@ public class GameLogic
         for (var i = 0; i < msg.Count; i++)
         {
             var id = msg[i];
-            PlayerCmd(id, msg.GetRange(i+1 , 3));
+            //PlayerCmd(id, msg.GetRange(i+1 , 3));
             i += 4;
         }
     }
 
-    public void PlayerCmd(int id, List<int> cmd)
+    public void PlayerCmd(ulong id, List<int> cmd)
     {
         GameData.PlayerData data = null;
         if (!Data.Players.TryGetValue(id, out data))

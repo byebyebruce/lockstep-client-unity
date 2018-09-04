@@ -35,23 +35,23 @@ public class LoadingUI : MonoBehaviour {
     IEnumerator ProgressCor()
     {
         yield return new WaitForSeconds(0.5f);
-        var msg = new message.C2S_ProgressMsg();
-        msg.Pro = 25;
-        Network.Instance.Send(message.C2S_Progress,msg);
+        var b = message.C2S_ProgressMsg.CreateBuilder();
+        b.SetPro(25);
+        Network.Instance.Send(message.ID.C2S_Progress,b.Build());
 
         yield return new WaitForSeconds(0.5f);
-        msg.Pro = 50;
-        Network.Instance.Send(message.C2S_Progress, msg);
+        b.SetPro(50);
+        Network.Instance.Send(message.ID.C2S_Progress, b.Build());
 
         yield return new WaitForSeconds(0.5f);
-        msg.Pro = 75;
-        Network.Instance.Send(message.C2S_Progress, msg);
+        b.SetPro(75);
+        Network.Instance.Send(message.ID.C2S_Progress, b.Build());
 
         yield return new WaitForSeconds(0.5f);
-        msg.Pro = 100;
-        Network.Instance.Send(message.C2S_Progress, msg);
+        b.SetPro(100);
+        Network.Instance.Send(message.ID.C2S_Progress, b.Build());
 
         yield return new WaitForSeconds(0.5f);
-        Network.Instance.Send(message.C2S_Ready);
+        Network.Instance.Send(message.ID.C2S_Ready);
     }
 }

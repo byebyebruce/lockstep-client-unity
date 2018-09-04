@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using cocosocket4unity;
 using UnityEngine;
+using pb = Google.ProtocolBuffers;
 
 public class Network : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Network : MonoBehaviour
     public bool Connected = false;
     public float Heartbeat = 10.0f;
     public float Delta = 0;
+    public string Token;
     void Awake()
     {
         Instance = this;
@@ -35,7 +37,7 @@ public class Network : MonoBehaviour
 	        Delta += Time.unscaledDeltaTime;
 	        if (Delta > Heartbeat)
 	        {
-	            client.Send(message.NewCSPacket(message.C2S_Heartbeat));
+	            client.Send(PacketWraper.NewPacket(message.ID.C2S_Heartbeat));
 	            Delta = 0;
 	        }
 
@@ -46,11 +48,11 @@ public class Network : MonoBehaviour
 
     }
 
-    public void Send(int id, object obj = null)
+    public void Send(message.ID id, pb.IMessage obj = null)
     {
         if (null != client && client.IsRunning() && Connected)
         {
-            client.Send(message.NewCSPacket(id,obj));
+            client.Send(PacketWraper.NewPacket(id,obj));
         }
         else
         {
@@ -67,7 +69,9 @@ public class Network : MonoBehaviour
             client.Connect("127.0.0.1", 10086);
             client.Start();
 
-            client.Send(message.NewCSPacket(message.C2S_Connect, null));
+            var b = message.C2S_ConnectMsg.CreateBuilder();
+            b.SetToken(Token);
+            client.Send(PacketWraper.NewPacket(message.ID.C2S_Connect, b.Build()));
 
             //StartCoroutine(Co());
         } else if (GUI.Button(new Rect(100, 0, 100, 100), "Disconnect"))

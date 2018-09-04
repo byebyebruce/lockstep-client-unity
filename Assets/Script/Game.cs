@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using UnityEngine;
-
+using UnityEngine.Assertions;
 using MyType = System.Collections.Generic.List<int>;
 
 public class Game : MonoBehaviour
@@ -33,7 +32,7 @@ public class Game : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void JoinRoom(int id)
+    public void JoinRoom(ulong id)
     {
         
         GameLogic.Instance.JoinRoom(id);
@@ -92,6 +91,7 @@ public class Game : MonoBehaviour
             n = 1;
         }
 
+        /*
         for (int i = 0; i < n; i++)
         {
             var data = Frame.TickFrame();
@@ -106,7 +106,7 @@ public class Game : MonoBehaviour
 
             GameLogic.Instance.ProcessCmd(data);
         }
-
+        */
 
         
     }
@@ -116,10 +116,23 @@ public class Game : MonoBehaviour
     [ContextMenu("test")]
     public void Test()
     {
-        var b = JsonConvert.DeserializeObject<MyType>("[1,2]");
+        /*
+        var obj = new message.SCPacket();
+        var str = JsonConvert.SerializeObject(obj);
+        var data = System.Text.Encoding.UTF8.GetBytes(str);
 
-        var a = JsonConvert.DeserializeObject<List<List<int>>>("[[1],[2],[3,4]]");
-        var temp = a.Count;
+        var target = new SnappyCompressor();
+
+        int compressedSize = target.MaxCompressedLength(data.Length);
+        var compressed = new byte[compressedSize];
+
+        int result = target.Compress(data, 0, data.Length, compressed);
+
+        //Assert.Equal(52, result);
+
+        var decompressor = new SnappyDecompressor();
+        var bytes = decompressor.Decompress(compressed, 0, result);
+        //Assert.Equal(data, bytes);*/
     }
 
         

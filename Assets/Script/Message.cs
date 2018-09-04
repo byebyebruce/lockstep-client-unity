@@ -1,10 +1,69 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using cocosocket4unity;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
+using pb = Google.ProtocolBuffers;
+
+public static class PacketWraper
+{
+    [System.Serializable]
+    public class Packet
+    {
+        public int id;
+        public byte[] data;
+    }
+
+    public static ByteBuf NewPacket(message.ID id, pb.IMessage msg = null)
+    {
+        var bufLen = BitConverter.GetBytes(0);
+        
+
+        var t = new List<byte>();
+
+        byte[] buffData = null;
+        if (null != msg)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                //Save the person to a stream
+                msg.WriteTo(stream);
+                buffData = stream.ToArray();
+
+                bufLen = BitConverter.GetBytes((ushort)buffData.Length);
+            }
+        }
+
+        if (BitConverter.IsLittleEndian)
+        {
+            Array.Reverse(bufLen);
+        }
+        t.AddRange(bufLen);
+        t.Add((byte)id);
+        if (null != buffData)
+        {
+             t.AddRange(buffData);
+        }
+        
+        return new ByteBuf(t.ToArray());
+    }
+
+    public static Packet ReadPacket(byte[] b)
+    {
+        Packet p = new Packet();
+        List<byte> temp = new List<byte>(b);
+        var bID = temp.GetRange(0, 2);
+        bID.Reverse();
+        var len = BitConverter.ToUInt16(bID.ToArray(), 0);
+        p.id = (int) temp[2];
+        p.data = temp.GetRange(2, len).ToArray();
+
+        return p;
+    }
+
+}
 
 /*
 --[[
@@ -30,13 +89,14 @@ using UnityEngine.Experimental.UIElements;
 
 ]]
 */
-
+/*
 public static class message{
 
     public const int C2S_Connect = 9998;
-    public const int S2C_Connect = 9999;
+    public const int S2C_Connect = C2S_Connect;
 
     public const int C2S_Heartbeat = 1;
+    public const int S2C_Heartbeat = C2S_Heartbeat;
 
     public const int C2S_JoinRoom = 5001;
     public const int S2C_JoinRoom = C2S_JoinRoom;
@@ -50,51 +110,9 @@ public static class message{
     public const int C2S_Result = 5006;
     public const int S2C_Result = C2S_Result;
 
-    public static ByteBuf NewCSPacket(int type, object obj=null)
-    {
-        byte rLen = 0;
-        var bID = BitConverter.GetBytes(type);
-        var bLen = BitConverter.GetBytes(0);
-        byte[] temp = null;
-        if (null != obj)
-        {
-            var str = JsonConvert.SerializeObject(obj);
-            temp = System.Text.Encoding.UTF8.GetBytes(str);
-            bLen = BitConverter.GetBytes(temp.Length);
-        }
-        List<byte> t = new List<byte>();
+    static SnappyCompressor compressor = new SnappyCompressor();
+    static SnappyDecompressor decompressor = new SnappyDecompressor();
 
-        if (BitConverter.IsLittleEndian)
-        {
-            Array.Reverse(bID);
-            Array.Reverse(bLen);
-        }
-        t.Add(rLen);
-        t.AddRange(bID);
-        t.AddRange(bLen);
-        if (null != temp)
-        {
-            t.AddRange(temp);
-        }
-
-        return new ByteBuf(t.ToArray());
-    }
-
-    public static SCPacket ReadPacket(byte[] b)
-    {
-        SCPacket p = new SCPacket();
-        List<byte> temp = new List<byte>(b);
-        var bID = temp.GetRange(0, 4);
-        bID.Reverse();
-        p.id = BitConverter.ToInt32(bID.ToArray(), 0);
-
-        var bDatLen = temp.GetRange(4, 4);
-        bDatLen.Reverse();
-        var len = BitConverter.ToInt32(bDatLen.ToArray(), 0);
-        p.data = temp.GetRange(8, len).ToArray();
-
-        return p;
-    }
 
 
 
@@ -117,14 +135,26 @@ public class CSPacket
 
 }
 
-/*[System.Serializable]
-public class S2C_JoinRoomMsg  {
-	RoomSeatid int32    `json:"roomseatid"`
+[System.Serializable]
+public class S2C_JoinRoomMsg
+{
+    public int roomseatid;
+    public List<int> ID;
+}
+    
+[System.Serializable]
+public class C2S_ProgressMsg
+{
+    public int pro;
 }
 [System.Serializable]
-public class C2S_ProgressMsg  {
-	Pro int32 `json:"pro"` //0~100
+public class S2C_ProgressMsg
+{
+    public int ID;
+    public int pro;
 }
+
+    /*
 [System.Serializable]
 public class S2C_ReadyMsg  {
 }
@@ -132,19 +162,9 @@ public class S2C_ReadyMsg  {
 //empty frame [1]int{ frameid }
 //skill frame [5]int{ frameid, seatid, skillid,sx,sy }
 
-type S2C_FrameMsg [][]int
-[System.Serializable]
-public class C2S_InputSkillMsg  {
-	Sid int32 `json:"sid"`
-	X   int32 `json:"sx"`
-	Y   int32 `json:"sy"`
-}
 
-
-type S2C_InputSkillMsg []int
-*/
-//----------[System.Serializable]-----------------------------------------------------
-public class S2C_ConnectMsg
+    //----------[System.Serializable]-----------------------------------------------------
+    public class S2C_ConnectMsg
 {
     
 }
@@ -152,24 +172,6 @@ public class S2C_ConnectMsg
 public class C2S_JoinRoomMsg
 {
     public int RoomID;
-}
-[System.Serializable]
-public class S2C_JoinRoomMsg
-{
-    public int MyID;
-    public List<int> ID;
-}
-[System.Serializable]
-public class C2S_ProgressMsg
-{
-    public int ID;
-    public int Pro;
-}
-[System.Serializable]
-public class S2C_ProgressMsg
-{
-    public int ID;
-    public int Pro;
 }
 
 
@@ -182,4 +184,4 @@ public class C2S_InputSkillMsg
 }
 
 
-}
+}*/
