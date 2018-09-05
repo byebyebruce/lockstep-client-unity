@@ -69,10 +69,16 @@ message C2S_InputSkillMsg  {
     	optional int32 y                = 3;
 }
 
+message InputData {
+    optional uint64 id               = 1;
+    optional int32 sid              = 2;
+    optional int32 x                = 3;
+    optional int32 y                = 4;
+}
+
 message FrameData {
     optional uint32 frameID          = 1;
-    optional uint64 id               = 2;
-    optional C2S_InputSkillMsg input         = 3;
+    repeated InputData input               = 2;
 }
 
 

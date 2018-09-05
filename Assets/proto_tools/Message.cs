@@ -32,6 +32,8 @@ namespace message {
     internal static pb::FieldAccess.FieldAccessorTable<global::message.S2C_ReadyMsg, global::message.S2C_ReadyMsg.Builder> internal__static_message_S2C_ReadyMsg__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_message_C2S_InputSkillMsg__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::message.C2S_InputSkillMsg, global::message.C2S_InputSkillMsg.Builder> internal__static_message_C2S_InputSkillMsg__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_message_InputData__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::message.InputData, global::message.InputData.Builder> internal__static_message_InputData__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_message_FrameData__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::message.FrameData, global::message.FrameData.Builder> internal__static_message_FrameData__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_message_S2C_FrameMsg__Descriptor;
@@ -53,17 +55,17 @@ namespace message {
             "U19Qcm9ncmVzc01zZxILCgNwcm8YASABKAUiKgoPUzJDX1Byb2dyZXNzTXNn", 
             "EgoKAmlkGAEgASgEEgsKA3BybxgCIAEoBSIaCgxTMkNfUmVhZHlNc2cSCgoC", 
             "aWQYASABKAQiNgoRQzJTX0lucHV0U2tpbGxNc2cSCwoDc2lkGAEgASgFEgkK", 
-            "AXgYAiABKAUSCQoBeRgDIAEoBSJTCglGcmFtZURhdGESDwoHZnJhbWVJRBgB", 
-            "IAEoDRIKCgJpZBgCIAEoBBIpCgVpbnB1dBgDIAEoCzIaLm1lc3NhZ2UuQzJT", 
-            "X0lucHV0U2tpbGxNc2ciMgoMUzJDX0ZyYW1lTXNnEiIKBmZyYW1lcxgBIAMo", 
-            "CzISLm1lc3NhZ2UuRnJhbWVEYXRhKqYCCgJJRBINCglNU0dfQkVHSU4QABIP", 
-            "CgtDMlNfQ29ubmVjdBABEg8KC1MyQ19Db25uZWN0EAESEQoNQzJTX0hlYXJ0", 
-            "YmVhdBACEhEKDVMyQ19IZWFydGJlYXQQAhIQCgxDMlNfSm9pblJvb20QChIQ", 
-            "CgxTMkNfSm9pblJvb20QChIQCgxDMlNfUHJvZ3Jlc3MQFBIQCgxTMkNfUHJv", 
-            "Z3Jlc3MQFBINCglDMlNfUmVhZHkQHhINCglTMkNfUmVhZHkQHhINCglTMkNf", 
-            "RnJhbWUQKBISCg5DMlNfSW5wdXRTa2lsbBAyEhIKDlMyQ19JbnB1dFNraWxs", 
-            "EDISDgoKQzJTX1Jlc3VsdBBkEg4KClMyQ19SZXN1bHQQZBIMCgdNU0dfRU5E", 
-          "EP8B"));
+            "AXgYAiABKAUSCQoBeRgDIAEoBSI6CglJbnB1dERhdGESCgoCaWQYASABKAQS", 
+            "CwoDc2lkGAIgASgFEgkKAXgYAyABKAUSCQoBeRgEIAEoBSI/CglGcmFtZURh", 
+            "dGESDwoHZnJhbWVJRBgBIAEoDRIhCgVpbnB1dBgCIAMoCzISLm1lc3NhZ2Uu", 
+            "SW5wdXREYXRhIjIKDFMyQ19GcmFtZU1zZxIiCgZmcmFtZXMYASADKAsyEi5t", 
+            "ZXNzYWdlLkZyYW1lRGF0YSqmAgoCSUQSDQoJTVNHX0JFR0lOEAASDwoLQzJT", 
+            "X0Nvbm5lY3QQARIPCgtTMkNfQ29ubmVjdBABEhEKDUMyU19IZWFydGJlYXQQ", 
+            "AhIRCg1TMkNfSGVhcnRiZWF0EAISEAoMQzJTX0pvaW5Sb29tEAoSEAoMUzJD", 
+            "X0pvaW5Sb29tEAoSEAoMQzJTX1Byb2dyZXNzEBQSEAoMUzJDX1Byb2dyZXNz", 
+            "EBQSDQoJQzJTX1JlYWR5EB4SDQoJUzJDX1JlYWR5EB4SDQoJUzJDX0ZyYW1l", 
+            "ECgSEgoOQzJTX0lucHV0U2tpbGwQMhISCg5TMkNfSW5wdXRTa2lsbBAyEg4K", 
+          "CkMyU19SZXN1bHQQZBIOCgpTMkNfUmVzdWx0EGQSDAoHTVNHX0VORBD/AQ=="));
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_message_C2S_ConnectMsg__Descriptor = Descriptor.MessageTypes[0];
@@ -98,11 +100,15 @@ namespace message {
         internal__static_message_C2S_InputSkillMsg__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::message.C2S_InputSkillMsg, global::message.C2S_InputSkillMsg.Builder>(internal__static_message_C2S_InputSkillMsg__Descriptor,
                 new string[] { "Sid", "X", "Y", });
-        internal__static_message_FrameData__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_message_InputData__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_message_InputData__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::message.InputData, global::message.InputData.Builder>(internal__static_message_InputData__Descriptor,
+                new string[] { "Id", "Sid", "X", "Y", });
+        internal__static_message_FrameData__Descriptor = Descriptor.MessageTypes[9];
         internal__static_message_FrameData__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::message.FrameData, global::message.FrameData.Builder>(internal__static_message_FrameData__Descriptor,
-                new string[] { "FrameID", "Id", "Input", });
-        internal__static_message_S2C_FrameMsg__Descriptor = Descriptor.MessageTypes[9];
+                new string[] { "FrameID", "Input", });
+        internal__static_message_S2C_FrameMsg__Descriptor = Descriptor.MessageTypes[10];
         internal__static_message_S2C_FrameMsg__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::message.S2C_FrameMsg, global::message.S2C_FrameMsg.Builder>(internal__static_message_S2C_FrameMsg__Descriptor,
                 new string[] { "Frames", });
@@ -2548,11 +2554,418 @@ namespace message {
   }
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class InputData : pb::GeneratedMessage<InputData, InputData.Builder> {
+    private InputData() { }
+    private static readonly InputData defaultInstance = new InputData().MakeReadOnly();
+    private static readonly string[] _inputDataFieldNames = new string[] { "id", "sid", "x", "y" };
+    private static readonly uint[] _inputDataFieldTags = new uint[] { 8, 16, 24, 32 };
+    public static InputData DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override InputData DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override InputData ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::message.Message.internal__static_message_InputData__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<InputData, InputData.Builder> InternalFieldAccessors {
+      get { return global::message.Message.internal__static_message_InputData__FieldAccessorTable; }
+    }
+    
+    public const int IdFieldNumber = 1;
+    private bool hasId;
+    private ulong id_;
+    public bool HasId {
+      get { return hasId; }
+    }
+    [global::System.CLSCompliant(false)]
+    public ulong Id {
+      get { return id_; }
+    }
+    
+    public const int SidFieldNumber = 2;
+    private bool hasSid;
+    private int sid_;
+    public bool HasSid {
+      get { return hasSid; }
+    }
+    public int Sid {
+      get { return sid_; }
+    }
+    
+    public const int XFieldNumber = 3;
+    private bool hasX;
+    private int x_;
+    public bool HasX {
+      get { return hasX; }
+    }
+    public int X {
+      get { return x_; }
+    }
+    
+    public const int YFieldNumber = 4;
+    private bool hasY;
+    private int y_;
+    public bool HasY {
+      get { return hasY; }
+    }
+    public int Y {
+      get { return y_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _inputDataFieldNames;
+      if (hasId) {
+        output.WriteUInt64(1, field_names[0], Id);
+      }
+      if (hasSid) {
+        output.WriteInt32(2, field_names[1], Sid);
+      }
+      if (hasX) {
+        output.WriteInt32(3, field_names[2], X);
+      }
+      if (hasY) {
+        output.WriteInt32(4, field_names[3], Y);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasId) {
+        size += pb::CodedOutputStream.ComputeUInt64Size(1, Id);
+      }
+      if (hasSid) {
+        size += pb::CodedOutputStream.ComputeInt32Size(2, Sid);
+      }
+      if (hasX) {
+        size += pb::CodedOutputStream.ComputeInt32Size(3, X);
+      }
+      if (hasY) {
+        size += pb::CodedOutputStream.ComputeInt32Size(4, Y);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static InputData ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static InputData ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static InputData ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static InputData ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static InputData ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static InputData ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static InputData ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static InputData ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static InputData ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static InputData ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private InputData MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(InputData prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<InputData, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(InputData cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private InputData result;
+      
+      private InputData PrepareBuilder() {
+        if (resultIsReadOnly) {
+          InputData original = result;
+          result = new InputData();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override InputData MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::message.InputData.Descriptor; }
+      }
+      
+      public override InputData DefaultInstanceForType {
+        get { return global::message.InputData.DefaultInstance; }
+      }
+      
+      public override InputData BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is InputData) {
+          return MergeFrom((InputData) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(InputData other) {
+        if (other == global::message.InputData.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasId) {
+          Id = other.Id;
+        }
+        if (other.HasSid) {
+          Sid = other.Sid;
+        }
+        if (other.HasX) {
+          X = other.X;
+        }
+        if (other.HasY) {
+          Y = other.Y;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_inputDataFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _inputDataFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 8: {
+              result.hasId = input.ReadUInt64(ref result.id_);
+              break;
+            }
+            case 16: {
+              result.hasSid = input.ReadInt32(ref result.sid_);
+              break;
+            }
+            case 24: {
+              result.hasX = input.ReadInt32(ref result.x_);
+              break;
+            }
+            case 32: {
+              result.hasY = input.ReadInt32(ref result.y_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasId {
+        get { return result.hasId; }
+      }
+      [global::System.CLSCompliant(false)]
+      public ulong Id {
+        get { return result.Id; }
+        set { SetId(value); }
+      }
+      [global::System.CLSCompliant(false)]
+      public Builder SetId(ulong value) {
+        PrepareBuilder();
+        result.hasId = true;
+        result.id_ = value;
+        return this;
+      }
+      public Builder ClearId() {
+        PrepareBuilder();
+        result.hasId = false;
+        result.id_ = 0UL;
+        return this;
+      }
+      
+      public bool HasSid {
+        get { return result.hasSid; }
+      }
+      public int Sid {
+        get { return result.Sid; }
+        set { SetSid(value); }
+      }
+      public Builder SetSid(int value) {
+        PrepareBuilder();
+        result.hasSid = true;
+        result.sid_ = value;
+        return this;
+      }
+      public Builder ClearSid() {
+        PrepareBuilder();
+        result.hasSid = false;
+        result.sid_ = 0;
+        return this;
+      }
+      
+      public bool HasX {
+        get { return result.hasX; }
+      }
+      public int X {
+        get { return result.X; }
+        set { SetX(value); }
+      }
+      public Builder SetX(int value) {
+        PrepareBuilder();
+        result.hasX = true;
+        result.x_ = value;
+        return this;
+      }
+      public Builder ClearX() {
+        PrepareBuilder();
+        result.hasX = false;
+        result.x_ = 0;
+        return this;
+      }
+      
+      public bool HasY {
+        get { return result.hasY; }
+      }
+      public int Y {
+        get { return result.Y; }
+        set { SetY(value); }
+      }
+      public Builder SetY(int value) {
+        PrepareBuilder();
+        result.hasY = true;
+        result.y_ = value;
+        return this;
+      }
+      public Builder ClearY() {
+        PrepareBuilder();
+        result.hasY = false;
+        result.y_ = 0;
+        return this;
+      }
+    }
+    static InputData() {
+      object.ReferenceEquals(global::message.Message.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public sealed partial class FrameData : pb::GeneratedMessage<FrameData, FrameData.Builder> {
     private FrameData() { }
     private static readonly FrameData defaultInstance = new FrameData().MakeReadOnly();
-    private static readonly string[] _frameDataFieldNames = new string[] { "frameID", "id", "input" };
-    private static readonly uint[] _frameDataFieldTags = new uint[] { 8, 16, 26 };
+    private static readonly string[] _frameDataFieldNames = new string[] { "frameID", "input" };
+    private static readonly uint[] _frameDataFieldTags = new uint[] { 8, 18 };
     public static FrameData DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2584,25 +2997,16 @@ namespace message {
       get { return frameID_; }
     }
     
-    public const int IdFieldNumber = 2;
-    private bool hasId;
-    private ulong id_;
-    public bool HasId {
-      get { return hasId; }
+    public const int InputFieldNumber = 2;
+    private pbc::PopsicleList<global::message.InputData> input_ = new pbc::PopsicleList<global::message.InputData>();
+    public scg::IList<global::message.InputData> InputList {
+      get { return input_; }
     }
-    [global::System.CLSCompliant(false)]
-    public ulong Id {
-      get { return id_; }
+    public int InputCount {
+      get { return input_.Count; }
     }
-    
-    public const int InputFieldNumber = 3;
-    private bool hasInput;
-    private global::message.C2S_InputSkillMsg input_;
-    public bool HasInput {
-      get { return hasInput; }
-    }
-    public global::message.C2S_InputSkillMsg Input {
-      get { return input_ ?? global::message.C2S_InputSkillMsg.DefaultInstance; }
+    public global::message.InputData GetInput(int index) {
+      return input_[index];
     }
     
     public override bool IsInitialized {
@@ -2617,11 +3021,8 @@ namespace message {
       if (hasFrameID) {
         output.WriteUInt32(1, field_names[0], FrameID);
       }
-      if (hasId) {
-        output.WriteUInt64(2, field_names[1], Id);
-      }
-      if (hasInput) {
-        output.WriteMessage(3, field_names[2], Input);
+      if (input_.Count > 0) {
+        output.WriteMessageArray(2, field_names[1], input_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -2643,11 +3044,8 @@ namespace message {
       if (hasFrameID) {
         size += pb::CodedOutputStream.ComputeUInt32Size(1, FrameID);
       }
-      if (hasId) {
-        size += pb::CodedOutputStream.ComputeUInt64Size(2, Id);
-      }
-      if (hasInput) {
-        size += pb::CodedOutputStream.ComputeMessageSize(3, Input);
+      foreach (global::message.InputData element in InputList) {
+        size += pb::CodedOutputStream.ComputeMessageSize(2, element);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -2684,6 +3082,7 @@ namespace message {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private FrameData MakeReadOnly() {
+      input_.MakeReadOnly();
       return this;
     }
     
@@ -2774,11 +3173,8 @@ namespace message {
         if (other.HasFrameID) {
           FrameID = other.FrameID;
         }
-        if (other.HasId) {
-          Id = other.Id;
-        }
-        if (other.HasInput) {
-          MergeInput(other.Input);
+        if (other.input_.Count != 0) {
+          result.input_.Add(other.input_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -2827,17 +3223,8 @@ namespace message {
               result.hasFrameID = input.ReadUInt32(ref result.frameID_);
               break;
             }
-            case 16: {
-              result.hasId = input.ReadUInt64(ref result.id_);
-              break;
-            }
-            case 26: {
-              global::message.C2S_InputSkillMsg.Builder subBuilder = global::message.C2S_InputSkillMsg.CreateBuilder();
-              if (result.hasInput) {
-                subBuilder.MergeFrom(Input);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              Input = subBuilder.BuildPartial();
+            case 18: {
+              input.ReadMessageArray(tag, field_name, result.input_, global::message.InputData.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -2872,65 +3259,47 @@ namespace message {
         return this;
       }
       
-      public bool HasId {
-        get { return result.hasId; }
+      public pbc::IPopsicleList<global::message.InputData> InputList {
+        get { return PrepareBuilder().input_; }
       }
-      [global::System.CLSCompliant(false)]
-      public ulong Id {
-        get { return result.Id; }
-        set { SetId(value); }
+      public int InputCount {
+        get { return result.InputCount; }
       }
-      [global::System.CLSCompliant(false)]
-      public Builder SetId(ulong value) {
-        PrepareBuilder();
-        result.hasId = true;
-        result.id_ = value;
-        return this;
+      public global::message.InputData GetInput(int index) {
+        return result.GetInput(index);
       }
-      public Builder ClearId() {
-        PrepareBuilder();
-        result.hasId = false;
-        result.id_ = 0UL;
-        return this;
-      }
-      
-      public bool HasInput {
-       get { return result.hasInput; }
-      }
-      public global::message.C2S_InputSkillMsg Input {
-        get { return result.Input; }
-        set { SetInput(value); }
-      }
-      public Builder SetInput(global::message.C2S_InputSkillMsg value) {
+      public Builder SetInput(int index, global::message.InputData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasInput = true;
-        result.input_ = value;
+        result.input_[index] = value;
         return this;
       }
-      public Builder SetInput(global::message.C2S_InputSkillMsg.Builder builderForValue) {
+      public Builder SetInput(int index, global::message.InputData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.hasInput = true;
-        result.input_ = builderForValue.Build();
+        result.input_[index] = builderForValue.Build();
         return this;
       }
-      public Builder MergeInput(global::message.C2S_InputSkillMsg value) {
+      public Builder AddInput(global::message.InputData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        if (result.hasInput &&
-            result.input_ != global::message.C2S_InputSkillMsg.DefaultInstance) {
-            result.input_ = global::message.C2S_InputSkillMsg.CreateBuilder(result.input_).MergeFrom(value).BuildPartial();
-        } else {
-          result.input_ = value;
-        }
-        result.hasInput = true;
+        result.input_.Add(value);
+        return this;
+      }
+      public Builder AddInput(global::message.InputData.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.input_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeInput(scg::IEnumerable<global::message.InputData> values) {
+        PrepareBuilder();
+        result.input_.Add(values);
         return this;
       }
       public Builder ClearInput() {
         PrepareBuilder();
-        result.hasInput = false;
-        result.input_ = null;
+        result.input_.Clear();
         return this;
       }
     }

@@ -44,7 +44,7 @@ public class Game : MonoBehaviour
       
     }
 
-    public void FrameData(List<List<int>> msg)
+    public void PushFrameData(List<message.FrameData> msg)
     {
         Frame.PushFrameData(msg);
         
@@ -91,7 +91,7 @@ public class Game : MonoBehaviour
             n = 1;
         }
 
-        /*
+        
         for (int i = 0; i < n; i++)
         {
             var data = Frame.TickFrame();
@@ -106,7 +106,7 @@ public class Game : MonoBehaviour
 
             GameLogic.Instance.ProcessCmd(data);
         }
-        */
+        
 
         
     }

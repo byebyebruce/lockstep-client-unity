@@ -46,28 +46,26 @@ public class GameLogic
         Data.Players[id].Progress = progress;
     }
 
-    public void ProcessCmd(List<ulong> msg)
+    public void ProcessCmd(message.FrameData msg)
     {
         if (null == msg)
         {
             return;
         }
-        for (var i = 0; i < msg.Count; i++)
+        foreach (var f in msg.InputList)
         {
-            var id = msg[i];
-            //PlayerCmd(id, msg.GetRange(i+1 , 3));
-            i += 4;
+            PlayerCmd(f);
         }
     }
 
-    public void PlayerCmd(ulong id, List<int> cmd)
+    public void PlayerCmd(message.InputData cmd)
     {
         GameData.PlayerData data = null;
-        if (!Data.Players.TryGetValue(id, out data))
+        if (!Data.Players.TryGetValue(cmd.Id, out data))
         {
             return;
         }
-        var dir = cmd[0];
+        var dir = cmd.Sid;
 
         if (1 == dir)
         {

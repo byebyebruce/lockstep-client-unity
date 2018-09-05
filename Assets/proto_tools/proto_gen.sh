@@ -1,0 +1,1 @@
+./ProtoGen ./*.proto 
