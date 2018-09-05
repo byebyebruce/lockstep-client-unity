@@ -18,7 +18,7 @@ public static class PacketWraper
 
     public static ByteBuf NewPacket(message.ID id, pb.IMessage msg = null)
     {
-        var bufLen = BitConverter.GetBytes(0);
+        var bufLen = BitConverter.GetBytes((ushort)0);
         
 
         var t = new List<byte>();
@@ -58,7 +58,7 @@ public static class PacketWraper
         bID.Reverse();
         var len = BitConverter.ToUInt16(bID.ToArray(), 0);
         p.id = (int) temp[2];
-        p.data = temp.GetRange(2, len).ToArray();
+        p.data = temp.GetRange(3, len).ToArray();
 
         return p;
     }

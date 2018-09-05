@@ -14,7 +14,12 @@ public class Network : MonoBehaviour
     public bool Connected = false;
     public float Heartbeat = 10.0f;
     public float Delta = 0;
-    public string Token;
+    public string Token = "1,2";
+    public string ServerIP = "172.25.157.63";
+    public int Port = 10086;
+
+    public string HttpURL = "10002?create=1,2,3";
+
     void Awake()
     {
         Instance = this;
@@ -66,7 +71,7 @@ public class Network : MonoBehaviour
         {
             
             //client.Connect("119.29.153.92", 2222);
-            client.Connect("127.0.0.1", 10086);
+            client.Connect(ServerIP, Port);
             client.Start();
 
             var b = message.C2S_ConnectMsg.CreateBuilder();
@@ -78,9 +83,9 @@ public class Network : MonoBehaviour
         {
             client.Stop();
         }
-        else if (GUI.Button(new Rect(200, 0, 100, 100), "Join"))
+        else if (GUI.Button(new Rect(200, 0, 100, 100), "Send HTTP"))
         {
-            
+            StartCoroutine(HttpGet());
 
         }
         else if (GUI.Button(new Rect(300, 0, 100, 100), "Leave"))
@@ -116,5 +121,20 @@ public class Network : MonoBehaviour
             client.Stop();
         }
         
+    }
+
+    IEnumerator HttpGet()
+    {
+        WWW getData = new WWW("http://"+ServerIP+":"+ HttpURL);
+        yield return getData;
+        if (getData.error != null)
+        {
+            Debug.Log(getData.error);
+        }
+        else
+        {
+            Debug.Log(getData.text);
+        }
+
     }
 }

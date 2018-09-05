@@ -208,7 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f8a03e3729d2b49a77f25b7da3017a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 100006, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
   MyID: -1
   State: 0
   TickTime: 0.03333333
@@ -225,6 +224,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20c62d3df8b8a1418d659a01b6bfa16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Connected: 0
+  Heartbeat: 10
+  Delta: 0
+  Token: 1,2
+  ServerIP: 172.25.157.63
+  Port: 10086
+  HttpURL: 10002?create=1,2,3
 --- !u!114 &225845246
 MonoBehaviour:
   m_ObjectHideFlags: 0

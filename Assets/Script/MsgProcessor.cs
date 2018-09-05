@@ -19,7 +19,6 @@ public static class MsgProcessor
         {
             case message.ID.S2C_Connect:
                 {
-                    string content = System.Text.Encoding.UTF8.GetString(p.data);
                     UnityEngine.Debug.Log("message.S2C_Connect");
 
                     Network.Instance.Send(message.ID.C2S_JoinRoom);
@@ -43,7 +42,6 @@ public static class MsgProcessor
             case message.ID.S2C_Progress:
                 {
                     var msg = message.S2C_ProgressMsg.ParseFrom(p.data);
-                    GameLogic.Instance.JoinRoom(msg.Id);
                     GameLogic.Instance.SetProgress(msg.Id,msg.Pro);
                 }
                 break;
