@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Connected: 0
-  Heartbeat: 10
+  Heartbeat: 2
   Delta: 0
   Token: 1,2
   ServerIP: 172.25.157.63

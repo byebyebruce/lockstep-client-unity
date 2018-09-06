@@ -13,7 +13,7 @@ public static class MsgProcessor
     public static void ProcessMsg(ByteBuf bb)
     {
         var p = PacketWraper.ReadPacket(bb.GetRaw());
-        //UnityEngine.Debug.Log("msg:" + p.id);
+        UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id,p.data.Length);
         var id = (message.ID)p.id;
         switch (id)
         {
@@ -36,7 +36,6 @@ public static class MsgProcessor
                     }
                     SceneManager.LoadScene(1);
 
-                    UnityEngine.Debug.Log("msg:" + p.id);
                 }
                 break;
             case message.ID.S2C_Progress:
@@ -55,6 +54,12 @@ public static class MsgProcessor
                 Game.Instance.PushFrameData(msg.FramesList.ToList());
 
             }
+                break;
+            case message.ID.MSG_END:
+            {
+                  UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id,p.data.Length);
+
+                }
                 break;
         }
        
