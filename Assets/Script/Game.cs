@@ -91,7 +91,8 @@ public class Game : MonoBehaviour
             n = 1;
         }
 
-        
+        n = Math.Min(20, n);
+
         for (int i = 0; i < n; i++)
         {
             var data = Frame.TickFrame();
