@@ -28,8 +28,8 @@ public class Network : MonoBehaviour
     void Start () {
         client = new MyKcp();
         client.NoDelay(1, 10, 2, 1);//fast
-        client.WndSize(64, 64);
-        client.Timeout(100 * 1000);
+        client.WndSize(4096, 4096);
+        client.Timeout(5 * 1000);
         client.SetMtu(512);
         client.SetMinRto(10);
         client.SetConv(121106);
