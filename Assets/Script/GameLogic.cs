@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GameData
 {
+    public ulong MyID;
     public class PlayerData
     {
+        
         public int Progress;
         public Vector3 Pos;
         public Quaternion Dir;
@@ -35,6 +37,11 @@ public class GameLogic
     public static GameLogic Instance;
 
     public GameData Data = new GameData();
+
+    public GameData.PlayerData GetMyData()
+    {
+        return Data.Players[Data.MyID];
+    }
 
     public void JoinRoom(ulong id)
     {

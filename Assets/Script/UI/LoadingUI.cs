@@ -37,18 +37,22 @@ public class LoadingUI : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         var b = message.C2S_ProgressMsg.CreateBuilder();
         b.SetPro(25);
+        GameLogic.Instance.GetMyData().Progress = 25;
         Network.Instance.Send(message.ID.C2S_Progress,b.Build());
 
         yield return new WaitForSeconds(0.5f);
         b.SetPro(50);
+        GameLogic.Instance.GetMyData().Progress = 50;
         Network.Instance.Send(message.ID.C2S_Progress, b.Build());
 
         yield return new WaitForSeconds(0.5f);
         b.SetPro(75);
+        GameLogic.Instance.GetMyData().Progress = 75;
         Network.Instance.Send(message.ID.C2S_Progress, b.Build());
 
         yield return new WaitForSeconds(0.5f);
         b.SetPro(100);
+        GameLogic.Instance.GetMyData().Progress = 100;
         Network.Instance.Send(message.ID.C2S_Progress, b.Build());
 
         yield return new WaitForSeconds(0.5f);

@@ -28,6 +28,7 @@ public static class MsgProcessor
                 {
                     
                     var msg = message.S2C_JoinRoomMsg.ParseFrom(p.data);
+                    GameLogic.Instance.Data.MyID = msg.Id;
                     GameLogic.Instance.JoinRoom(msg.Id);
 
                     foreach (var pid in msg.OthersList)
