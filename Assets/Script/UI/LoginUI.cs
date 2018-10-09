@@ -37,10 +37,10 @@ public class LoginUI : MonoBehaviour
         Network.Instance.client.Start();
 
 
-        var b = message.C2S_ConnectMsg.CreateBuilder();
+        var b = pb.C2S_ConnectMsg.CreateBuilder();
         
         b.SetToken(string.Format("{0},{1}", Room.text, ID.text));
-        Network.Instance.client.Send(PacketWraper.NewPacket(message.ID.C2S_Connect, b.Build()));
+        Network.Instance.client.Send(PacketWraper.NewPacket(pb.ID.MSG_Connect, b.Build()));
     }
 
     IEnumerator HttpGet()

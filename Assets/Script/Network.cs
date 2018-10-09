@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using cocosocket4unity;
 using UnityEngine;
-using pb = Google.ProtocolBuffers;
 
 public class Network : MonoBehaviour
 {
@@ -38,7 +37,7 @@ public class Network : MonoBehaviour
 	        Delta += Time.unscaledDeltaTime;
 	        if (Delta > Heartbeat)
 	        {
-	            client.Send(PacketWraper.NewPacket(message.ID.C2S_Heartbeat));
+	            client.Send(PacketWraper.NewPacket(pb.ID.MSG_Heartbeat));
 	            Delta = 0;
 	        }
 
@@ -49,7 +48,7 @@ public class Network : MonoBehaviour
 
     }
 
-    public void Send(message.ID id, pb.IMessage obj = null)
+    public void Send(pb.ID id, Google.ProtocolBuffers.IMessage obj = null)
     {
         if (null != client && client.IsRunning() && Connected)
         {

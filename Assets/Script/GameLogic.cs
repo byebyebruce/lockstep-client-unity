@@ -53,7 +53,7 @@ public class GameLogic
         Data.Players[id].Progress = progress;
     }
 
-    public void ProcessCmd(message.FrameData msg)
+    public void ProcessCmd(pb.FrameData msg)
     {
         if (null == msg)
         {
@@ -65,7 +65,7 @@ public class GameLogic
         }
     }
 
-    public void PlayerCmd(message.InputData cmd)
+    public void PlayerCmd(pb.InputData cmd)
     {
         GameData.PlayerData data = null;
         if (!Data.Players.TryGetValue(cmd.Id, out data))

@@ -29,8 +29,8 @@ public class GamePlay : MonoBehaviour {
 	        GameObject o = null;
 	        if (Players.TryGetValue(playerData.Key, out o))
 	        {
-	            //o.transform.localPosition = Vector3.Lerp(o.transform.localPosition, playerData.Value.Pos,Time.deltaTime * 10);
-	            o.transform.localPosition = playerData.Value.Pos;
+	            o.transform.localPosition = Vector3.Lerp(o.transform.localPosition, playerData.Value.Pos,Time.deltaTime * 20);
+	            //o.transform.localPosition = playerData.Value.Pos;
 	        }
 
 	    }
@@ -41,27 +41,27 @@ public class GamePlay : MonoBehaviour {
         
         if (GUI.Button(new Rect(0, 100, 100, 100), "Foward"))
         {
-            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            var msg = pb.C2S_InputMsg.CreateBuilder();
             msg.SetSid(1);
-            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
+            Network.Instance.Send(pb.ID.MSG_Input, msg.Build());
         }
         else if (GUI.Button(new Rect(100, 100, 100, 100), "Back"))
         {
-            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            var msg = pb.C2S_InputMsg.CreateBuilder();
             msg.SetSid(2);
-            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
+            Network.Instance.Send(pb.ID.MSG_Input, msg.Build());
         }
         else if (GUI.Button(new Rect(200, 100, 100, 100), "Left"))
         {
-            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            var msg = pb.C2S_InputMsg.CreateBuilder();
             msg.SetSid(3);
-            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
+            Network.Instance.Send(pb.ID.MSG_Input, msg.Build());
         }
         else if (GUI.Button(new Rect(300, 100, 100, 100), "Right"))
         {
-            var msg = message.C2S_InputSkillMsg.CreateBuilder();
+            var msg = pb.C2S_InputMsg.CreateBuilder();
             msg.SetSid(4);
-            Network.Instance.Send(message.ID.C2S_InputSkill, msg.Build());
+            Network.Instance.Send(pb.ID.MSG_Input, msg.Build());
         }
 
     }

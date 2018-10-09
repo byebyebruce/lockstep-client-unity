@@ -44,7 +44,7 @@ public class Game : MonoBehaviour
       
     }
 
-    public void PushFrameData(List<message.FrameData> msg)
+    public void PushFrameData(List<pb.FrameData> msg)
     {
         Frame.PushFrameData(msg);
         

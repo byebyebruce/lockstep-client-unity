@@ -5,7 +5,6 @@ using System.IO;
 using cocosocket4unity;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
-using pb = Google.ProtocolBuffers;
 
 public static class PacketWraper
 {
@@ -16,7 +15,7 @@ public static class PacketWraper
         public byte[] data;
     }
 
-    public static ByteBuf NewPacket(message.ID id, pb.IMessage msg = null)
+    public static ByteBuf NewPacket(pb.ID id, Google.ProtocolBuffers.IMessage msg = null)
     {
         var bufLen = BitConverter.GetBytes((ushort)0);
         

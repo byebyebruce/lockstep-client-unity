@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LockStepFrame  {
-    public Dictionary<uint,message.FrameData> FrameList = new Dictionary<uint, message.FrameData>();
+    public Dictionary<uint,pb.FrameData> FrameList = new Dictionary<uint, pb.FrameData>();
     public uint FrameCount;
 
 
@@ -15,7 +15,7 @@ public class LockStepFrame  {
         FrameList.Clear();
     }
 
-    public void PushFrameData(List<message.FrameData> msg)
+    public void PushFrameData(List<pb.FrameData> msg)
     {
         foreach (var m in msg)
         {
@@ -24,7 +24,7 @@ public class LockStepFrame  {
         }
     }
 
-    public message.FrameData TickFrame()
+    public pb.FrameData TickFrame()
     {
 
         if (FrameList.Count == 0)
@@ -32,7 +32,7 @@ public class LockStepFrame  {
             return null;
         }
 
-        message.FrameData msg = null;
+        pb.FrameData msg = null;
         if (FrameList.TryGetValue(FrameCount, out msg))
         {
             FrameList.Remove(FrameCount);
