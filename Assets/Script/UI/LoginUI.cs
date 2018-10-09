@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
@@ -38,8 +39,10 @@ public class LoginUI : MonoBehaviour
 
 
         var b = pb.C2S_ConnectMsg.CreateBuilder();
-        
-        b.SetToken(string.Format("{0},{1}", Room.text, ID.text));
+
+        b.SetBattleID(UInt64.Parse(Room.text));
+        b.SetPlayerID(UInt64.Parse(ID.text));
+        b.SetToken("");
         Network.Instance.client.Send(PacketWraper.NewPacket(pb.ID.MSG_Connect, b.Build()));
     }
 
