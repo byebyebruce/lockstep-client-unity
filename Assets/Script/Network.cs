@@ -21,6 +21,16 @@ public class Network : MonoBehaviour
     }
     // Use this for initialization
     void Start () {
+        
+    }
+
+    public void Connect(string host, int port)
+    {
+        if (null != client)
+        {
+            client.Stop();
+        }
+
         client = new MyKcp();
         client.NoDelay(1, 10, 2, 1);//fast
         client.WndSize(4096, 4096);
@@ -28,8 +38,12 @@ public class Network : MonoBehaviour
         client.SetMtu(512);
         client.SetMinRto(10);
         client.SetConv(121106);
+
+        client.Connect(host, port);
+
+        client.Start();
     }
-	
+
 	// Update is called once per frame
 	void Update () {
 	    if (null != client && client.IsRunning() && Connected)
@@ -75,21 +89,20 @@ public class Network : MonoBehaviour
 
     public void HandleReceive(ByteBuf bb)
     {
-        Connected = true;
         MsgProcessor.ProcessMsg(bb);
     }
 
     public void HandleException(Exception ex)
     {
-        UnityEngine.Debug.LogWarning("MyKcp HandleException");
-        Application.Quit();
+        UnityEngine.Debug.LogWarning("MyKcp HandleException:"+ ex.Message);
+        Application.LoadLevel(0);
     }
 
     public void HandleTimeout()
     {
         Connected = false;
         UnityEngine.Debug.LogWarning("MyKcp HandleTimeout");
-        Application.Quit();
+        Application.LoadLevel(0);
     }
 
     void OnDestroy()

@@ -20,8 +20,16 @@ public static class MsgProcessor
             case pb.ID.MSG_Connect:
                 {
                     UnityEngine.Debug.Log("pb.S2C_Connect");
-
-                    Network.Instance.Send(pb.ID.MSG_JoinRoom);
+                    var msg = pb.S2C_ConnectMsg.ParseFrom(p.data);
+                    if (msg.ErrorCode == pb.ERRORCODE.ERR_Ok)
+                    {
+                        Network.Instance.Connected = true;
+                        Network.Instance.Send(pb.ID.MSG_JoinRoom);
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.LogErrorFormat("pb.S2C_Connect{0}",msg.ErrorCode);
+                    }
                 }
                 break;
             case pb.ID.MSG_JoinRoom:
@@ -58,6 +66,13 @@ public static class MsgProcessor
             {
                 var msg = pb.S2C_FrameMsg.ParseFrom(p.data);
                 Game.Instance.PushFrameData(msg.FramesList.ToList());
+
+            }
+                break;
+            case pb.ID.MSG_Result:
+            {
+                //UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id, p.data.Length);
+                Application.LoadLevel(0);
 
             }
                 break;

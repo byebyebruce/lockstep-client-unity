@@ -34,8 +34,7 @@ public class LoginUI : MonoBehaviour
     {
         var addr = Host.text.Split(':');
 
-        Network.Instance.client.Connect(addr[0],int.Parse(addr[1]));
-        Network.Instance.client.Start();
+        Network.Instance.Connect(addr[0],int.Parse(addr[1]));
 
 
         var b = pb.C2S_ConnectMsg.CreateBuilder();
