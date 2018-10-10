@@ -15,7 +15,9 @@ enum ID {
     MSG_Start       = 40;   //开始
     MSG_Frame       = 50;   //帧数据
     MSG_Input       = 60;   //输入
-    MSG_Result      = 100;  //结果
+    MSG_Result      = 70;   //结果
+
+    MSG_Close      = 100;   //房间关闭
 
     MSG_END = 255;
 }
@@ -23,9 +25,10 @@ enum ID {
 //错误码
 enum ERRORCODE {
     ERR_Ok          = 0;    //OK
-    ERR_NoRoom      = 1;    //没有房间
-    ERR_RoomState   = 2;    //房间状态不正确
-    ERR_Token       = 3;    //Token验证失败
+    ERR_NoPlayer    = 1;    //没有这个玩家
+    ERR_NoRoom      = 2;    //没有房间
+    ERR_RoomState   = 3;    //房间状态不正确
+    ERR_Token       = 4;    //Token验证失败
 }
 
 //客户端发来的第一个消息
@@ -40,10 +43,11 @@ message S2C_ConnectMsg  {
 	optional ERRORCODE errorCode    = 1;    //错误码
 }
 
-//服务端返回连接消息
+//服务端返回进入房间消息
 message S2C_JoinRoomMsg  {
 	optional uint64 id              = 1;   //自己的id(可以不用)
 	repeated uint64 others          = 2;   //其他人的id
+	repeated int32 pros             = 3;   //其他人的进度
 }
 
 //读条进度

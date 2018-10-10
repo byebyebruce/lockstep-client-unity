@@ -31,9 +31,12 @@ public static class MsgProcessor
                     GameLogic.Instance.Data.MyID = msg.Id;
                     GameLogic.Instance.JoinRoom(msg.Id);
 
-                    foreach (var pid in msg.OthersList)
+                    //foreach (var pid in msg.OthersList)
+                    for(int i=0; i< msg.OthersList.Count; i++)
                     {
+                        var pid = msg.GetOthers(i);
                         GameLogic.Instance.JoinRoom(pid);
+                        GameLogic.Instance.Data.Players[pid].Progress = msg.GetPros(i);
                     }
                     SceneManager.LoadScene(1);
 
@@ -58,12 +61,20 @@ public static class MsgProcessor
 
             }
                 break;
+            case pb.ID.MSG_Close:
+            {
+                //UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id, p.data.Length);
+                Application.LoadLevel(0);
+
+            }
+                break;
             case pb.ID.MSG_END:
             {
                   UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id,p.data.Length);
 
                 }
                 break;
+
         }
        
     }

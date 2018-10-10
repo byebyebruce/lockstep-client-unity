@@ -49,21 +49,22 @@ namespace pb {
             "Cg1tZXNzYWdlLnByb3RvEgJwYiJDCg5DMlNfQ29ubmVjdE1zZxIQCghwbGF5", 
             "ZXJJRBgBIAEoBBIQCghiYXR0bGVJRBgCIAEoBBINCgV0b2tlbhgKIAEoCSIy", 
             "Cg5TMkNfQ29ubmVjdE1zZxIgCgllcnJvckNvZGUYASABKA4yDS5wYi5FUlJP", 
-            "UkNPREUiLQoPUzJDX0pvaW5Sb29tTXNnEgoKAmlkGAEgASgEEg4KBm90aGVy", 
-            "cxgCIAMoBCIeCg9DMlNfUHJvZ3Jlc3NNc2cSCwoDcHJvGAEgASgFIioKD1My", 
-            "Q19Qcm9ncmVzc01zZxIKCgJpZBgBIAEoBBILCgNwcm8YAiABKAUiMQoMQzJT", 
-            "X0lucHV0TXNnEgsKA3NpZBgBIAEoBRIJCgF4GAIgASgFEgkKAXkYAyABKAUi", 
-            "OgoJSW5wdXREYXRhEgoKAmlkGAEgASgEEgsKA3NpZBgCIAEoBRIJCgF4GAMg", 
-            "ASgFEgkKAXkYBCABKAUiOgoJRnJhbWVEYXRhEg8KB2ZyYW1lSUQYASABKA0S", 
-            "HAoFaW5wdXQYAiADKAsyDS5wYi5JbnB1dERhdGEiLQoMUzJDX0ZyYW1lTXNn", 
-            "Eh0KBmZyYW1lcxgBIAMoCzINLnBiLkZyYW1lRGF0YSIhCg1DMlNfUmVzdWx0", 
-            "TXNnEhAKCHdpbm5lcklEGAEgASgEKrUBCgJJRBINCglNU0dfQkVHSU4QABIP", 
-            "CgtNU0dfQ29ubmVjdBABEhEKDU1TR19IZWFydGJlYXQQAhIQCgxNU0dfSm9p", 
-            "blJvb20QChIQCgxNU0dfUHJvZ3Jlc3MQFBINCglNU0dfUmVhZHkQHhINCglN", 
-            "U0dfU3RhcnQQKBINCglNU0dfRnJhbWUQMhINCglNU0dfSW5wdXQQPBIOCgpN", 
-            "U0dfUmVzdWx0EGQSDAoHTVNHX0VORBD/ASpJCglFUlJPUkNPREUSCgoGRVJS", 
-            "X09rEAASDgoKRVJSX05vUm9vbRABEhEKDUVSUl9Sb29tU3RhdGUQAhINCglF", 
-          "UlJfVG9rZW4QAw=="));
+            "UkNPREUiOwoPUzJDX0pvaW5Sb29tTXNnEgoKAmlkGAEgASgEEg4KBm90aGVy", 
+            "cxgCIAMoBBIMCgRwcm9zGAMgAygFIh4KD0MyU19Qcm9ncmVzc01zZxILCgNw", 
+            "cm8YASABKAUiKgoPUzJDX1Byb2dyZXNzTXNnEgoKAmlkGAEgASgEEgsKA3By", 
+            "bxgCIAEoBSIxCgxDMlNfSW5wdXRNc2cSCwoDc2lkGAEgASgFEgkKAXgYAiAB", 
+            "KAUSCQoBeRgDIAEoBSI6CglJbnB1dERhdGESCgoCaWQYASABKAQSCwoDc2lk", 
+            "GAIgASgFEgkKAXgYAyABKAUSCQoBeRgEIAEoBSI6CglGcmFtZURhdGESDwoH", 
+            "ZnJhbWVJRBgBIAEoDRIcCgVpbnB1dBgCIAMoCzINLnBiLklucHV0RGF0YSIt", 
+            "CgxTMkNfRnJhbWVNc2cSHQoGZnJhbWVzGAEgAygLMg0ucGIuRnJhbWVEYXRh", 
+            "IiEKDUMyU19SZXN1bHRNc2cSEAoId2lubmVySUQYASABKAQqxAEKAklEEg0K", 
+            "CU1TR19CRUdJThAAEg8KC01TR19Db25uZWN0EAESEQoNTVNHX0hlYXJ0YmVh", 
+            "dBACEhAKDE1TR19Kb2luUm9vbRAKEhAKDE1TR19Qcm9ncmVzcxAUEg0KCU1T", 
+            "R19SZWFkeRAeEg0KCU1TR19TdGFydBAoEg0KCU1TR19GcmFtZRAyEg0KCU1T", 
+            "R19JbnB1dBA8Eg4KCk1TR19SZXN1bHQQRhINCglNU0dfQ2xvc2UQZBIMCgdN", 
+            "U0dfRU5EEP8BKlsKCUVSUk9SQ09ERRIKCgZFUlJfT2sQABIQCgxFUlJfTm9Q", 
+            "bGF5ZXIQARIOCgpFUlJfTm9Sb29tEAISEQoNRVJSX1Jvb21TdGF0ZRADEg0K", 
+          "CUVSUl9Ub2tlbhAE"));
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_pb_C2S_ConnectMsg__Descriptor = Descriptor.MessageTypes[0];
@@ -77,7 +78,7 @@ namespace pb {
         internal__static_pb_S2C_JoinRoomMsg__Descriptor = Descriptor.MessageTypes[2];
         internal__static_pb_S2C_JoinRoomMsg__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::pb.S2C_JoinRoomMsg, global::pb.S2C_JoinRoomMsg.Builder>(internal__static_pb_S2C_JoinRoomMsg__Descriptor,
-                new string[] { "Id", "Others", });
+                new string[] { "Id", "Others", "Pros", });
         internal__static_pb_C2S_ProgressMsg__Descriptor = Descriptor.MessageTypes[3];
         internal__static_pb_C2S_ProgressMsg__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::pb.C2S_ProgressMsg, global::pb.C2S_ProgressMsg.Builder>(internal__static_pb_C2S_ProgressMsg__Descriptor,
@@ -126,15 +127,17 @@ namespace pb {
     MSG_Start = 40,
     MSG_Frame = 50,
     MSG_Input = 60,
-    MSG_Result = 100,
+    MSG_Result = 70,
+    MSG_Close = 100,
     MSG_END = 255,
   }
   
   public enum ERRORCODE {
     ERR_Ok = 0,
-    ERR_NoRoom = 1,
-    ERR_RoomState = 2,
-    ERR_Token = 3,
+    ERR_NoPlayer = 1,
+    ERR_NoRoom = 2,
+    ERR_RoomState = 3,
+    ERR_Token = 4,
   }
   
   #endregion
@@ -795,8 +798,8 @@ namespace pb {
   public sealed partial class S2C_JoinRoomMsg : pb::GeneratedMessage<S2C_JoinRoomMsg, S2C_JoinRoomMsg.Builder> {
     private S2C_JoinRoomMsg() { }
     private static readonly S2C_JoinRoomMsg defaultInstance = new S2C_JoinRoomMsg().MakeReadOnly();
-    private static readonly string[] _s2CJoinRoomMsgFieldNames = new string[] { "id", "others" };
-    private static readonly uint[] _s2CJoinRoomMsgFieldTags = new uint[] { 8, 16 };
+    private static readonly string[] _s2CJoinRoomMsgFieldNames = new string[] { "id", "others", "pros" };
+    private static readonly uint[] _s2CJoinRoomMsgFieldTags = new uint[] { 8, 16, 24 };
     public static S2C_JoinRoomMsg DefaultInstance {
       get { return defaultInstance; }
     }
@@ -842,6 +845,18 @@ namespace pb {
       return others_[index];
     }
     
+    public const int ProsFieldNumber = 3;
+    private pbc::PopsicleList<int> pros_ = new pbc::PopsicleList<int>();
+    public scg::IList<int> ProsList {
+      get { return pbc::Lists.AsReadOnly(pros_); }
+    }
+    public int ProsCount {
+      get { return pros_.Count; }
+    }
+    public int GetPros(int index) {
+      return pros_[index];
+    }
+    
     public override bool IsInitialized {
       get {
         return true;
@@ -856,6 +871,9 @@ namespace pb {
       }
       if (others_.Count > 0) {
         output.WriteUInt64Array(2, field_names[1], others_);
+      }
+      if (pros_.Count > 0) {
+        output.WriteInt32Array(3, field_names[2], pros_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -884,6 +902,14 @@ namespace pb {
         }
         size += dataSize;
         size += 1 * others_.Count;
+      }
+      {
+        int dataSize = 0;
+        foreach (int element in ProsList) {
+          dataSize += pb::CodedOutputStream.ComputeInt32SizeNoTag(element);
+        }
+        size += dataSize;
+        size += 1 * pros_.Count;
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -921,6 +947,7 @@ namespace pb {
     }
     private S2C_JoinRoomMsg MakeReadOnly() {
       others_.MakeReadOnly();
+      pros_.MakeReadOnly();
       return this;
     }
     
@@ -1014,6 +1041,9 @@ namespace pb {
         if (other.others_.Count != 0) {
           result.others_.Add(other.others_);
         }
+        if (other.pros_.Count != 0) {
+          result.pros_.Add(other.pros_);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -1064,6 +1094,11 @@ namespace pb {
             case 18:
             case 16: {
               input.ReadUInt64Array(tag, field_name, result.others_);
+              break;
+            }
+            case 26:
+            case 24: {
+              input.ReadInt32Array(tag, field_name, result.pros_);
               break;
             }
           }
@@ -1130,6 +1165,36 @@ namespace pb {
       public Builder ClearOthers() {
         PrepareBuilder();
         result.others_.Clear();
+        return this;
+      }
+      
+      public pbc::IPopsicleList<int> ProsList {
+        get { return PrepareBuilder().pros_; }
+      }
+      public int ProsCount {
+        get { return result.ProsCount; }
+      }
+      public int GetPros(int index) {
+        return result.GetPros(index);
+      }
+      public Builder SetPros(int index, int value) {
+        PrepareBuilder();
+        result.pros_[index] = value;
+        return this;
+      }
+      public Builder AddPros(int value) {
+        PrepareBuilder();
+        result.pros_.Add(value);
+        return this;
+      }
+      public Builder AddRangePros(scg::IEnumerable<int> values) {
+        PrepareBuilder();
+        result.pros_.Add(values);
+        return this;
+      }
+      public Builder ClearPros() {
+        PrepareBuilder();
+        result.pros_.Clear();
         return this;
       }
     }
