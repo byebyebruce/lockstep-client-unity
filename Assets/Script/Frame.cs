@@ -6,15 +6,17 @@ public class LockStepFrame  {
     public Dictionary<uint,pb.FrameData> FrameList = new Dictionary<uint, pb.FrameData>();
     public uint FrameCount;
 
-
-
-
     public void Start()
     {
 
-        FrameList.Clear();
+        Reset();
     }
 
+    public void Reset()
+    {
+        FrameCount = 0;
+        FrameList.Clear();
+    }
     public void PushFrameData(List<pb.FrameData> msg)
     {
         foreach (var m in msg)

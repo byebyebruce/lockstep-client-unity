@@ -22,6 +22,7 @@ public class Game : MonoBehaviour
     public GameState State;
 
     private LockStepFrame Frame = new LockStepFrame();
+    public GameLogic Logic = new GameLogic();
 
     public float TickTime = 0.03333333f;
     public float NextTime;
@@ -32,10 +33,16 @@ public class Game : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void Reset()
+    {
+        Frame.Reset();
+        Logic.Reset();
+    }
+
     public void JoinRoom(ulong id)
     {
         
-        GameLogic.Instance.JoinRoom(id);
+        Logic.JoinRoom(id);
         UnityEngine.Debug.LogFormat("[{0}], JoinRoom", id);
     }
 
@@ -105,7 +112,7 @@ public class Game : MonoBehaviour
                 Debug.LogFormat("FrameCount={0} Remain{1}", Frame.FrameCount,Frame.FrameList.Count());
             }
 
-            GameLogic.Instance.ProcessCmd(data);
+            Logic.ProcessCmd(data);
         }
         
 

@@ -36,15 +36,15 @@ public static class MsgProcessor
                 {
                     
                     var msg = pb.S2C_JoinRoomMsg.ParseFrom(p.data);
-                    GameLogic.Instance.Data.MyID = msg.Id;
-                    GameLogic.Instance.JoinRoom(msg.Id);
+                    Game.Instance.Logic.Data.MyID = msg.Id;
+                    Game.Instance.Logic.JoinRoom(msg.Id);
 
                     //foreach (var pid in msg.OthersList)
                     for(int i=0; i< msg.OthersList.Count; i++)
                     {
                         var pid = msg.GetOthers(i);
-                        GameLogic.Instance.JoinRoom(pid);
-                        GameLogic.Instance.Data.Players[pid].Progress = msg.GetPros(i);
+                        Game.Instance.Logic.JoinRoom(pid);
+                        Game.Instance.Logic.Data.Players[pid].Progress = msg.GetPros(i);
                     }
                     SceneManager.LoadScene(1);
 
@@ -53,7 +53,7 @@ public static class MsgProcessor
             case pb.ID.MSG_Progress:
                 {
                     var msg = pb.S2C_ProgressMsg.ParseFrom(p.data);
-                    GameLogic.Instance.SetProgress(msg.Id,msg.Pro);
+                    Game.Instance.Logic.SetProgress(msg.Id,msg.Pro);
                 }
                 break;
             case pb.ID.MSG_Ready:

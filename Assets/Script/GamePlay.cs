@@ -8,7 +8,7 @@ public class GamePlay : MonoBehaviour {
 
     void Awake()
     {
-        var d = GameLogic.Instance.Data;
+        var d = Game.Instance.Logic.Data;
         foreach (var kv in d.Players)
         {
             Players[kv.Key] = GameObject.Instantiate(Prefab, Vector3.zero, Quaternion.identity);
@@ -23,7 +23,7 @@ public class GamePlay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    var d = GameLogic.Instance.Data;
+	    var d = Game.Instance.Logic.Data;
 	    foreach (var playerData in d.Players)
 	    {
 	        GameObject o = null;

@@ -29,14 +29,13 @@ public class GameData
 
 public class GameLogic
 {
-    static GameLogic()
-    {
-        Instance = new GameLogic();
-    }
-
-    public static GameLogic Instance;
 
     public GameData Data = new GameData();
+
+    public void Reset()
+    {
+        Data.Reset();
+    }
 
     public GameData.PlayerData GetMyData()
     {
