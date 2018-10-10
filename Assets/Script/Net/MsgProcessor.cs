@@ -71,14 +71,16 @@ public static class MsgProcessor
                 break;
             case pb.ID.MSG_Result:
             {
-                //UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id, p.data.Length);
-                Application.LoadLevel(0);
+                    //UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id, p.data.Length);
+                Network.Instance.client.Stop();
+                    Application.LoadLevel(0);
 
             }
                 break;
             case pb.ID.MSG_Close:
             {
-                //UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id, p.data.Length);
+                    //UnityEngine.Debug.LogFormat("msg:{0}-[{1}]", p.id, p.data.Length);
+                Network.Instance.client.Stop();
                 Application.LoadLevel(0);
 
             }
