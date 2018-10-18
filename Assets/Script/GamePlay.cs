@@ -36,10 +36,10 @@ public class GamePlay : MonoBehaviour {
 	        }
 
 	    }
-	    if (Game.Instance.Frame.FrameCount == NextEventFrame)
+	    if (Game.Instance.Frame.FrameCount >= NextEventFrame)
 	    {
 
-	        NextEventFrame = (uint)Random.RandomRange(10, 100);
+	        NextEventFrame = Game.Instance.Frame.FrameCount+(uint)Random.RandomRange(10, 100);
 	        var x = Random.RandomRange(-10, 10);
 	        var z = Random.RandomRange(-10, 10);
 
