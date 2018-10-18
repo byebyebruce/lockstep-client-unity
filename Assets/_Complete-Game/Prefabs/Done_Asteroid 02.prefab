@@ -27,9 +27,6 @@ GameObject:
   m_Component:
   - component: {fileID: 400002}
   - component: {fileID: 5400000}
-  - component: {fileID: 11400000}
-  - component: {fileID: 11400002}
-  - component: {fileID: 11400006}
   m_Layer: 0
   m_Name: Done_Asteroid 02
   m_TagString: Enemy
@@ -121,44 +118,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c19560e3c6a341e48361ef8c42b3609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tumble: 5
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8846417901f4942d2a5fa9e32ce69d45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100004, guid: a6d58f54ce5934781962a4f887e834f3, type: 2}
-  playerExplosion: {fileID: 100008, guid: 3455fe69f7ddc4604b95bf9b0a1e88d7, type: 2}
-  scoreValue: 10
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7850f24249e4056b2189de03ae584c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -5
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -40,7 +40,8 @@ public class LoginUI : MonoBehaviour
         var b = pb.C2S_ConnectMsg.CreateBuilder();
 
         b.SetBattleID(UInt64.Parse(Room.text));
-        b.SetPlayerID(UInt64.Parse(ID.text));
+        Game.Instance.Logic.Data.MyID = UInt64.Parse(ID.text);
+        b.SetPlayerID(Game.Instance.Logic.Data.MyID);
         b.SetToken("");
         Network.Instance.client.Send(PacketWraper.NewPacket(pb.ID.MSG_Connect, b.Build()));
     }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GamePlay : MonoBehaviour {
     public GameObject Prefab;
+    public List<GameObject> Objs;
     public Dictionary<ulong, GameObject> Players = new Dictionary<ulong, GameObject>();
 
+    private uint NextEventFrame = 60;
     void Awake()
     {
         var d = Game.Instance.Logic.Data;
@@ -33,6 +35,16 @@ public class GamePlay : MonoBehaviour {
 	            //o.transform.localPosition = playerData.Value.Pos;
 	        }
 
+	    }
+	    if (Game.Instance.Frame.FrameCount == NextEventFrame)
+	    {
+
+	        NextEventFrame = (uint)Random.RandomRange(10, 100);
+	        var x = Random.RandomRange(-10, 10);
+	        var z = Random.RandomRange(-10, 10);
+
+	        var o = GameObject.Instantiate(Objs[Random.RandomRange(0, Objs.Count - 1)], new Vector3(x, 0, z), Quaternion.identity);
+	        StartCoroutine(DelayDestroyObj(o));
 	    }
     }
 
@@ -66,4 +78,9 @@ public class GamePlay : MonoBehaviour {
 
     }
 
+    IEnumerator DelayDestroyObj(GameObject obj)
+    {
+        yield return new WaitForSeconds(5);
+        GameObject.Destroy(obj);
+    }
 }

@@ -36,8 +36,9 @@ public static class MsgProcessor
                 {
                     
                     var msg = pb.S2C_JoinRoomMsg.ParseFrom(p.data);
-                    Game.Instance.Logic.Data.MyID = msg.Id;
-                    Game.Instance.Logic.JoinRoom(msg.Id);
+
+                    UnityEngine.Random.seed = msg.RandomSeed;
+                    Game.Instance.Logic.JoinRoom(Game.Instance.Logic.Data.MyID);
 
                     //foreach (var pid in msg.OthersList)
                     for(int i=0; i< msg.OthersList.Count; i++)

@@ -285,6 +285,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 100006, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
+  Objs:
+  - {fileID: 100000, guid: 7d5f7699d6d1d48e485ac71126e12061, type: 2}
+  - {fileID: 100002, guid: 9143e2b62ad50488482f9b73672fc331, type: 2}
+  - {fileID: 100002, guid: 834bfaee90a9d4e04b1e8c1ca22cc88e, type: 2}
+  - {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
+  - {fileID: 100000, guid: 11e27c26ac87b40f0a62ec40d7261989, type: 2}
 --- !u!4 &951479171
 Transform:
   m_ObjectHideFlags: 0

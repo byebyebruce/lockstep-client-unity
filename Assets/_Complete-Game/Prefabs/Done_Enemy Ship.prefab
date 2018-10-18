@@ -27,10 +27,6 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 5400000}
   - component: {fileID: 13500000}
-  - component: {fileID: 11400004}
-  - component: {fileID: 11400000}
-  - component: {fileID: 11400006}
-  - component: {fileID: 11400008}
   - component: {fileID: 8200000}
   m_Layer: 0
   m_Name: Done_Enemy Ship
@@ -279,69 +275,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365dd2da98dd9431b8c5d7406c200eeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shot: {fileID: 100000, guid: 11e27c26ac87b40f0a62ec40d7261989, type: 2}
-  shotSpawn: {fileID: 400006}
-  fireRate: 1.5
-  delay: 0.5
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8846417901f4942d2a5fa9e32ce69d45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100012, guid: 160925a6fe2664f2a978566b819f0af0, type: 2}
-  playerExplosion: {fileID: 100008, guid: 3455fe69f7ddc4604b95bf9b0a1e88d7, type: 2}
-  scoreValue: 20
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7850f24249e4056b2189de03ae584c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -5
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef73dad58880c4027a74be9c91fb039e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundary:
-    xMin: -6
-    xMax: 6
-    zMin: -20
-    zMax: 20
-  tilt: 10
-  dodge: 5
-  smoothing: 7.5
-  startWait: {x: 0.5, y: 1}
-  maneuverTime: {x: 1, y: 2}
-  maneuverWait: {x: 1, y: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

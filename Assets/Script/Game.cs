@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
     
     public GameState State;
 
-    private LockStepFrame Frame = new LockStepFrame();
+    public LockStepFrame Frame = new LockStepFrame();
     public GameLogic Logic = new GameLogic();
 
     public float TickTime = 0.03333333f;

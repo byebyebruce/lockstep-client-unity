@@ -45,9 +45,16 @@ message S2C_ConnectMsg  {
 
 //服务端返回进入房间消息
 message S2C_JoinRoomMsg  {
-	optional uint64 id              = 1;   //自己的id(可以不用)
+	optional int32 roomseatid       = 1;   //自己的位置索引id(1~N)
 	repeated uint64 others          = 2;   //其他人的id
 	repeated int32 pros             = 3;   //其他人的进度
+	optional int32 randomSeed       = 4;   //随机种子
+}
+
+//服务端广播开始游戏消息
+message S2C_StartMsg  {
+	optional int64 timeStamp        = 1;   //同步时间戳
+
 }
 
 //读条进度
@@ -66,14 +73,16 @@ message C2S_InputMsg  {
     optional int32 sid              = 1;    //操作id
     optional int32 x                = 2;    //操作位置x
     optional int32 y                = 3;    //操作位置y
+    optional uint32 frameID         = 4;    //帧ID
 }
 
 //帧存储操作输入
 message InputData {
-    optional uint64 id              = 1;   //id(客户端发来时可以不填这个，为了托管扩展用)
+    optional uint64 id              = 1;    //id
     optional int32 sid              = 2;    //操作id
     optional int32 x                = 3;    //操作位置x
     optional int32 y                = 4;    //操作位置y
+    optional int32 roomseatid       = 5;    //操作者的位置索引id(1~N)
 }
 
 //帧数据
