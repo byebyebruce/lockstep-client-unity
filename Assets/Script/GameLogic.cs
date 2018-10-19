@@ -52,7 +52,7 @@ public class GameLogic
         Data.Players[id].Progress = progress;
     }
 
-    public void ProcessCmd(pb.FrameData msg)
+    public void ProcessFrameData(pb.FrameData msg)
     {
         if (null == msg)
         {

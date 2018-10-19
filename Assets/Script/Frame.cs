@@ -21,7 +21,6 @@ public class LockStepFrame  {
     {
         foreach (var m in msg)
         {
-            
             FrameList[m.FrameID] = m;
         }
     }

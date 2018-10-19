@@ -27,6 +27,9 @@ public class Game : MonoBehaviour
     public float TickTime = 0.03333333f;
     public float NextTime;
 
+    public delegate void TickFrame(uint a, GameData b);
+
+    public event TickFrame Callback;
     void Awake()
     {
         Instance = this;
@@ -88,31 +91,32 @@ public class Game : MonoBehaviour
 
         NextTime += TickTime;
 
-        var n = Frame.FrameList.Count;
+        var n = 1;
         if (Frame.FrameList.Count >=5)
         {
-            n = (int)((Frame.FrameList.Count + 15.0f) / 10.0f);
-        }
-        else
-        {
-            n = 1;
+            n = Math.Min(20, (int)((Frame.FrameList.Count + 15.0f) / 10.0f));
         }
 
-        n = Math.Min(20, n);
 
         for (int i = 0; i < n; i++)
         {
-            var data = Frame.TickFrame();
-            if (null==data)
+            
+            pb.FrameData data = null;
+            if (!Frame.FrameList.TryGetValue(Frame.FrameCount, out data))
             {
-                break;
-            }
-            if (i >= 2)
-            {
-                Debug.LogFormat("FrameCount={0} Remain{1}", Frame.FrameCount,Frame.FrameList.Count());
+                return;
+
             }
 
-            Logic.ProcessCmd(data);
+            Frame.FrameList.Remove(Frame.FrameCount);
+            
+            Logic.ProcessFrameData(data);
+            if (null != Callback)
+            {
+                Callback(Frame.FrameCount, Logic.Data);
+            }
+
+            Frame.FrameCount++;
         }
         
 

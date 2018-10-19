@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GamePlay : MonoBehaviour {
     public GameObject Prefab;
@@ -8,6 +10,7 @@ public class GamePlay : MonoBehaviour {
     public Dictionary<ulong, GameObject> Players = new Dictionary<ulong, GameObject>();
 
     private uint NextEventFrame = 60;
+    private List<GameObject> objs = new List<GameObject>();
     void Awake()
     {
         var d = Game.Instance.Logic.Data;
@@ -19,9 +22,16 @@ public class GamePlay : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    Game.Instance.Callback += TickFrame;
+
 	}
+
+    void OnDestroy()
+    {
+        Game.Instance.Callback -= TickFrame;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,16 +46,7 @@ public class GamePlay : MonoBehaviour {
 	        }
 
 	    }
-	    if (Game.Instance.Frame.FrameCount >= NextEventFrame)
-	    {
-
-	        NextEventFrame = Game.Instance.Frame.FrameCount+(uint)Random.RandomRange(10, 100);
-	        var x = Random.RandomRange(-10, 10);
-	        var z = Random.RandomRange(-10, 10);
-
-	        var o = GameObject.Instantiate(Objs[Random.RandomRange(0, Objs.Count - 1)], new Vector3(x, 0, z), Quaternion.identity);
-	        StartCoroutine(DelayDestroyObj(o));
-	    }
+	    
     }
 
     void OnGUI()
@@ -78,9 +79,31 @@ public class GamePlay : MonoBehaviour {
 
     }
 
-    IEnumerator DelayDestroyObj(GameObject obj)
+
+    void TickFrame(uint a, GameData b)
     {
-        yield return new WaitForSeconds(5);
-        GameObject.Destroy(obj);
+        if (a >= NextEventFrame)
+        {
+
+            NextEventFrame = a + (uint)Random.RandomRange(10, 40);
+            var x = Random.RandomRange(-8, 8);
+            var z = Random.RandomRange(-8, 8);
+
+            var o = GameObject.Instantiate(Objs[Random.RandomRange(0, Objs.Count - 1)], new Vector3(x, 0, z), Quaternion.identity);
+            o.name = a.ToString();
+            objs.Add(o);
+        }
+        for (int i=0; i<objs.Count; )
+        {
+            var n = UInt64.Parse(objs[i].name);
+
+            if (a>n + 60 )
+            {
+                GameObject.Destroy(objs[i]);
+                objs.RemoveAt(i);
+                continue;
+            }
+            i++;
+        }
     }
 }
