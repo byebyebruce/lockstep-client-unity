@@ -58,10 +58,14 @@ public class GameLogic
         {
             return;
         }
-        foreach (var f in msg.InputList)
+        if (null != msg.InputList)
         {
-            PlayerCmd(f);
+            foreach (var f in msg.InputList)
+            {
+                PlayerCmd(f);
+            }
         }
+        
     }
 
     public void PlayerCmd(pb.InputData cmd)

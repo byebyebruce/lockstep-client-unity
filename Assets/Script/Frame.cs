@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LockStepFrame  {
     public Dictionary<uint,pb.FrameData> FrameList = new Dictionary<uint, pb.FrameData>();
-    public uint FrameCount;
+    public uint CurrentFrameIdx;
+    public uint TotoalFrameCount;
 
     public void Start()
     {
@@ -14,33 +16,35 @@ public class LockStepFrame  {
 
     public void Reset()
     {
-        FrameCount = 0;
+        CurrentFrameIdx = 0;
+        TotoalFrameCount = 0;
         FrameList.Clear();
     }
+
+    public uint GetRemainFrameCount()
+    {
+        return TotoalFrameCount - CurrentFrameIdx;
+    }
+
     public void PushFrameData(List<pb.FrameData> msg)
     {
         foreach (var m in msg)
         {
             FrameList[m.FrameID] = m;
+            TotoalFrameCount = Math.Max(TotoalFrameCount, m.FrameID);
         }
     }
 
     public pb.FrameData TickFrame()
     {
-
-        if (FrameList.Count == 0)
+        pb.FrameData data = null;
+        if (FrameList.TryGetValue(CurrentFrameIdx, out data))
         {
-            return null;
+            FrameList.Remove(CurrentFrameIdx);
         }
+        
+        CurrentFrameIdx++;
 
-        pb.FrameData msg = null;
-        if (FrameList.TryGetValue(FrameCount, out msg))
-        {
-            FrameList.Remove(FrameCount);
-            FrameCount++;
-            return msg;
-        }
-
-        return null;
+        return data;
     }
 }

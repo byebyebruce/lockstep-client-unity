@@ -82,9 +82,13 @@ public class Game : MonoBehaviour
             return;
         }
 
-
-
         if (NextTime > Time.unscaledTime)
+        {
+            return;
+        }
+
+        var remain = Frame.GetRemainFrameCount();
+        if (remain <= 0)
         {
             return;
         }
@@ -92,31 +96,22 @@ public class Game : MonoBehaviour
         NextTime += TickTime;
 
         var n = 1;
-        if (Frame.FrameList.Count >=5)
+        if (remain >= 5)
         {
-            n = Math.Min(20, (int)((Frame.FrameList.Count + 15.0f) / 10.0f));
+            n = Math.Min(20, (int)((remain + 15.0f) / 10.0f));
         }
 
 
         for (int i = 0; i < n; i++)
         {
-            
-            pb.FrameData data = null;
-            if (!Frame.FrameList.TryGetValue(Frame.FrameCount, out data))
-            {
-                return;
-
-            }
-
-            Frame.FrameList.Remove(Frame.FrameCount);
+            var idx = Frame.CurrentFrameIdx;
+            var data = Frame.TickFrame();
             
             Logic.ProcessFrameData(data);
             if (null != Callback)
             {
-                Callback(Frame.FrameCount, Logic.Data);
+                Callback(idx, Logic.Data);
             }
-
-            Frame.FrameCount++;
         }
         
 
